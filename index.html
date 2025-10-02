@@ -24,6 +24,7 @@
             background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
             position: relative;
             overflow: hidden;
+            padding: clamp(1rem, 3vw, 2rem);
         }
         
         .access-container::before {
@@ -31,17 +32,23 @@
             position: absolute;
             top: -50%;
             right: -10%;
-            width: 600px;
-            height: 600px;
+            width: clamp(300px, 60vw, 600px);
+            height: clamp(300px, 60vw, 600px);
             background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
             animation: float 8s ease-in-out infinite;
         }
         
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, 20px); }
+        }
+        
         .access-card {
             background: white;
-            border-radius: 2rem;
-            padding: 4rem 3rem;
+            border-radius: clamp(1rem, 2vw, 2rem);
+            padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
             max-width: 500px;
+            width: 100%;
             text-align: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             position: relative;
@@ -61,44 +68,65 @@
         }
         
         .access-icon {
-            width: 100px;
-            height: 100px;
+            width: clamp(70px, 15vw, 100px);
+            height: clamp(70px, 15vw, 100px);
             background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 2rem;
+            margin: 0 auto clamp(1rem, 3vw, 2rem);
             color: white;
             animation: pulse-icon 3s ease-in-out infinite;
         }
         
+        .access-icon [data-lucide] {
+            width: clamp(35px, 7vw, 50px) !important;
+            height: clamp(35px, 7vw, 50px) !important;
+        }
+        
+        @keyframes pulse-icon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
         .access-title {
-            font-size: 2.5rem;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 1rem;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
+            line-height: 1.2;
         }
         
         .access-subtitle {
-            font-size: 1.125rem;
+            font-size: clamp(0.875rem, 2.5vw, 1.125rem);
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.4;
         }
         
         .access-btn {
             background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
             border: none;
             color: white;
-            padding: 1rem 2.5rem;
+            padding: clamp(0.75rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
             border-radius: 2rem;
-            font-size: 1.125rem;
+            font-size: clamp(0.875rem, 2vw, 1.125rem);
             font-weight: 600;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
+            justify-content: center;
+            gap: clamp(0.5rem, 1.5vw, 0.75rem);
+            min-height: 44px;
+            white-space: nowrap;
+        }
+        
+        .access-btn [data-lucide] {
+            width: clamp(18px, 4vw, 24px) !important;
+            height: clamp(18px, 4vw, 24px) !important;
+            flex-shrink: 0;
         }
         
         .access-btn:hover {
@@ -107,24 +135,39 @@
             color: white;
         }
         
+        .access-btn:active {
+            transform: translateY(0);
+        }
+        
         .quick-links {
             display: flex;
-            gap: 1rem;
+            gap: clamp(0.5rem, 2vw, 1rem);
             justify-content: center;
-            margin-top: 2rem;
+            margin-top: clamp(1.5rem, 3vw, 2rem);
+            flex-wrap: wrap;
         }
         
         .quick-link {
-            padding: 0.75rem 1.5rem;
+            padding: clamp(0.5rem, 1.5vw, 0.75rem) clamp(0.75rem, 2vw, 1.5rem);
             border: 2px solid var(--border-color);
-            border-radius: 1rem;
+            border-radius: clamp(0.75rem, 1.5vw, 1rem);
             color: var(--text-dark);
             text-decoration: none;
             transition: all 0.3s ease;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: clamp(0.375rem, 1vw, 0.5rem);
             font-weight: 600;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            min-height: 44px;
+            white-space: nowrap;
+        }
+        
+        .quick-link [data-lucide] {
+            width: clamp(16px, 3vw, 18px) !important;
+            height: clamp(16px, 3vw, 18px) !important;
+            flex-shrink: 0;
         }
         
         .quick-link:hover {
@@ -132,6 +175,36 @@
             background: rgba(202, 121, 87, 0.1);
             color: var(--brand-color);
             transform: translateY(-2px);
+        }
+        
+        .quick-link:active {
+            transform: translateY(0);
+        }
+        
+        /* Ultra-small devices */
+        @media (max-width: 374px) {
+            .access-card {
+                padding: 1.5rem 1rem;
+            }
+            
+            .quick-links {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .quick-link {
+                width: 100%;
+            }
+        }
+        
+        /* Prevent horizontal overflow */
+        body, html {
+            overflow-x: hidden;
+            max-width: 100%;
+        }
+        
+        * {
+            box-sizing: border-box;
         }
     </style>
 </head>
