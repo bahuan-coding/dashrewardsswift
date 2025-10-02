@@ -323,11 +323,13 @@ document.addEventListener('DOMContentLoaded', async function() {
         const isLoginPage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
         const isHomePage = window.location.pathname.includes('inicio.html');
         const isWalletPage = window.location.pathname.includes('carteira.html');
+        const isDashboardPage = window.location.pathname.includes('ranking.html');
         
         console.log('🔍 Detecção de página:', {
             isLoginPage,
             isHomePage,
             isWalletPage,
+            isDashboardPage,
             currentPath: window.location.pathname
         });
         
