@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recompensas - Swift Elite Rewards</title>
+  <meta name="description" content="Explore e resgate recompensas incríveis com seus créditos Swift">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Estilos do projeto -->
+  <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/responsive-fixes.css" />
+
+  <!-- Ícones Lucide -->
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+  <div class="d-flex min-vh-100">
+    <!-- Sidebar Desktop -->
+    <nav class="sidebar d-none d-lg-block bg-white border-end shadow-sm">
+      <div class="d-flex flex-column h-100 p-4 pe-3">
+        <div class="d-flex align-items-center mb-4">
+          <div class="icon-circle-small me-3">
+            <i data-lucide="zap" class="text-brand"></i>
+          </div>
+          <h6 class="mb-0 fw-bold text-brand">Swift Elite</h6>
+        </div>
+        
+        <!-- Bloco de Perfil Minimalista -->
+        <div class="profile-minimal mb-4 text-center">
+          <div class="mb-2">
+            <img src="images/colaborador.png" alt="Foto do colaborador" class="rounded-circle" style="width: 70px; height: 70px; object-fit: cover; border: 2px solid var(--brand-color);">
+          </div>
+          <h6 class="mb-0 fw-bold text-brand">João Silva</h6>
+        </div>
+        
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="inicio.html">
+              <i data-lucide="home" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Início</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="ranking.html">
+              <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Ranking</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="carteira.html">
+              <i data-lucide="wallet" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Carteira</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="recompensas.html">
+              <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Recompensas</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Bottom Navigation -->
+        <div class="mt-auto border-top pt-3">
+          <ul class="nav flex-column gap-1">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#settings">
+                <i data-lucide="settings" class="me-3" style="width: 20px; height: 20px;"></i>
+                <span>Configurações</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2 text-danger" href="index.html">
+                <i data-lucide="log-out" class="me-3" style="width: 20px; height: 20px;"></i>
+                <span>Sair</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow-1">
+      <!-- Header Sticky -->
+      <header class="sticky-top bg-white border-bottom shadow-sm">
+        <div class="container-fluid py-3 px-4">
+          <div class="row align-items-center">
+            <div class="col-auto d-lg-none">
+              <!-- Botão Mobile Menu -->
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+              </button>
+            </div>
+            
+            <div class="col">
+              <h1 class="h4 mb-0 fw-bold text-dark">Recompensas</h1>
+            </div>
+            
+            <div class="col-auto">
+              <div class="rewards-balance-mini">
+                <i data-lucide="coins" style="width: 20px; height: 20px;"></i>
+                <span class="fw-bold" id="userCredits">2.150</span>
+                <span class="small text-muted">créditos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Container Principal -->
+      <div class="container-fluid px-4 py-4">
+        
+        <!-- Hero Recompensas -->
+        <section class="mb-4">
+          <div class="rewards-hero">
+            <div class="rewards-hero-content">
+              <h2 class="rewards-hero-title">🎁 Troque seus créditos por prêmios incríveis!</h2>
+              <p class="rewards-hero-subtitle">Você conquistou muito! Chegou a hora de colher os frutos</p>
+            </div>
+            <div class="rewards-hero-stats">
+              <div class="stat-item">
+                <div class="stat-value" id="redeemableCount">4</div>
+                <div class="stat-label">Disponíveis</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-value" id="almostCount">2</div>
+                <div class="stat-label">Quase lá!</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Filtros Gamificados -->
+        <section class="mb-4">
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-4">
+              <div class="row g-3">
+                <!-- Categoria -->
+                <div class="col-12 col-md-4">
+                  <label class="form-label fw-semibold">
+                    <i data-lucide="filter" style="width: 16px; height: 16px;"></i>
+                    Categoria
+                  </label>
+                  <select class="form-select" id="categoryFilter">
+                    <option value="all">Todas as Categorias</option>
+                    <option value="gourmet">🥩 Kit Gourmet</option>
+                    <option value="experience">Experiências</option>
+                    <option value="product">Produtos</option>
+                    <option value="travel">Viagens</option>
+                    <option value="vip">VIP</option>
+                  </select>
+                </div>
+
+                <!-- Faixa de Créditos -->
+                <div class="col-12 col-md-4">
+                  <label class="form-label fw-semibold">
+                    <i data-lucide="coins" style="width: 16px; height: 16px;"></i>
+                    Faixa de Créditos
+                  </label>
+                  <select class="form-select" id="creditRangeFilter">
+                    <option value="all">Todos os Valores</option>
+                    <option value="0-1000">Até 1.000 créditos</option>
+                    <option value="1000-2500">1.000 - 2.500 créditos</option>
+                    <option value="2500-5000">2.500 - 5.000 créditos</option>
+                    <option value="5000+">Acima de 5.000 créditos</option>
+                  </select>
+                </div>
+
+                <!-- Disponibilidade -->
+                <div class="col-12 col-md-4">
+                  <label class="form-label fw-semibold">
+                    <i data-lucide="check-circle" style="width: 16px; height: 16px;"></i>
+                    Disponibilidade
+                  </label>
+                  <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="availability" id="avail-all" value="all" checked>
+                    <label class="btn btn-outline-brand btn-sm" for="avail-all">Todas</label>
+                    
+                    <input type="radio" class="btn-check" name="availability" id="avail-redeemable" value="redeemable">
+                    <label class="btn btn-outline-brand btn-sm" for="avail-redeemable">Posso Resgatar</label>
+                    
+                    <input type="radio" class="btn-check" name="availability" id="avail-new" value="new">
+                    <label class="btn btn-outline-brand btn-sm" for="avail-new">Novos</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3 d-flex justify-content-between align-items-center">
+                <button class="btn btn-outline-secondary btn-sm" id="clearFiltersBtn">
+                  <i data-lucide="x" class="me-1" style="width: 16px; height: 16px;"></i>
+                  Limpar Filtros
+                </button>
+                <span class="small text-muted" id="resultsCount">Mostrando 7 de 7 recompensas</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Grid de Recompensas -->
+        <section>
+          <div class="row g-4" id="rewardsGrid">
+            <!-- Cards preenchidos dinamicamente -->
+          </div>
+        </section>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="d-none">
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-5 text-center">
+              <div class="empty-state-icon mx-auto mb-4">
+                <i data-lucide="gift" style="width: 64px; height: 64px; stroke-width: 1.5;"></i>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">Nenhuma recompensa encontrada</h5>
+              <p class="text-muted mb-4">Ajuste os filtros para ver mais opções disponíveis</p>
+              <button class="btn btn-brand" onclick="clearAllFilters()">
+                <i data-lucide="filter-x" class="me-2" style="width: 16px; height: 16px;"></i>
+                Limpar Filtros
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Offcanvas Mobile -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+    <div class="offcanvas-header border-bottom">
+      <div class="d-flex align-items-center">
+        <div class="icon-circle-small me-3">
+          <i data-lucide="zap" class="text-brand"></i>
+        </div>
+        <h5 class="offcanvas-title fw-bold text-brand" id="offcanvasSidebarLabel">Swift Elite</h5>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Bloco de Perfil Mobile -->
+      <div class="profile-minimal mb-4 text-center">
+        <div class="mb-2">
+          <img src="images/colaborador.png" alt="Foto do colaborador" class="rounded-circle" style="width: 56px; height: 56px; object-fit: cover; border: 2px solid var(--brand-color);">
+        </div>
+        <h6 class="mb-0 fw-bold text-brand">João Silva</h6>
+      </div>
+      <ul class="nav flex-column gap-1">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="inicio.html">
+            <i data-lucide="home" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Início</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="ranking.html">
+            <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Ranking</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="carteira.html">
+            <i data-lucide="wallet" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Carteira</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="recompensas.html">
+            <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Recompensas</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Bottom Navigation -->
+      <div class="mt-auto border-top pt-3">
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#settings">
+              <i data-lucide="settings" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Configurações</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2 text-danger" href="index.html">
+              <i data-lucide="log-out" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Sair</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Detalhes da Recompensa -->
+  <div class="modal fade" id="rewardDetailModal" tabindex="-1" aria-labelledby="rewardDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-3 border-0 shadow">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="text-center mb-4">
+            <div class="reward-modal-icon mx-auto mb-3">
+              <i id="modalRewardIcon" data-lucide="gift" style="width: 48px; height: 48px;"></i>
+            </div>
+            <h4 class="fw-bold mb-2" id="modalRewardTitle">Título da Recompensa</h4>
+            <p class="text-muted mb-3" id="modalRewardHead">Subtítulo</p>
+            <p id="modalRewardDesc">Descrição detalhada da recompensa</p>
+          </div>
+          
+          <div class="reward-price-box mb-4">
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-muted">Valor da Recompensa:</span>
+              <div class="reward-price-large">
+                <i data-lucide="coins" style="width: 24px; height: 24px;"></i>
+                <span id="modalRewardPrice">0</span>
+                <span class="small">créditos</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button class="btn btn-brand btn-lg" id="redeemBtn" onclick="redeemReward()">
+              <i data-lucide="check-circle" class="me-2" style="width: 20px; height: 20px;"></i>
+              Resgatar Agora
+            </button>
+            <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1055;" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="./js/content-loader.js"></script>
+  <script src="./js/app.js"></script>
+  
+  <!-- Recompensas Script -->
+  <script>
+    // Mock de dados de recompensas (sincronizado com content.yaml)
+    const rewardsData = [
+      {
+        id: 1,
+        icon: 'package',
+        title: 'Caixa Seleção Premium Swift',
+        head: '🥩🍤🍔 Kit Gourmet Completo',
+        desc: 'Picanha nobre 2kg + Camarão argentino 1kg + 8 Hambúrguers Gourmet Swift. Viva a qualidade que você vende!',
+        coins: 2000,
+        category: 'gourmet',
+        isNew: true,
+        stock: true,
+        highlight: true
+      },
+      {
+        id: 2,
+        icon: 'flame',
+        title: 'Kit Churrasco Elite',
+        head: '🔥 Carne Angus Premium',
+        desc: '4kg de cortes premium Angus + Temperos Swift exclusivos + Tábua de madeira personalizada com logo Swift',
+        coins: 1800,
+        category: 'gourmet',
+        isNew: false,
+        stock: true,
+        highlight: true
+      },
+      {
+        id: 3,
+        icon: 'palmtree',
+        title: 'Swift Weekend',
+        head: '2 Noites Resort 5★',
+        desc: 'Resort 5 estrelas all-inclusive + Jantar completo com os melhores cortes Swift em destino paradisíaco',
+        coins: 2500,
+        category: 'travel',
+        isNew: false,
+        stock: true
+      },
+      {
+        id: 4,
+        icon: 'briefcase',
+        title: 'Dia do CEO',
+        head: 'Experiência Executiva',
+        desc: 'Passe um dia como CEO da Swift: participe de reuniões estratégicas e conheça os bastidores da empresa',
+        coins: 3000,
+        category: 'experience',
+        isNew: true,
+        stock: true
+      },
+      {
+        id: 5,
+        icon: 'utensils',
+        title: 'Faca + Avental Pro',
+        head: 'Kit Profissional Chef',
+        desc: 'Faca premium de chef profissional + Avental bordado Swift + Kit 6 temperos exclusivos da casa',
+        coins: 800,
+        category: 'product',
+        isNew: false,
+        stock: true
+      },
+      {
+        id: 6,
+        icon: 'sparkles',
+        title: 'Concierge Swift Elite',
+        head: 'Experiência VIP Família',
+        desc: 'Atendimento personalizado, presente surpresa exclusivo e aventura premium para você e sua família',
+        coins: 5000,
+        category: 'vip',
+        isNew: false,
+        stock: true
+      },
+      {
+        id: 7,
+        icon: 'gift',
+        title: 'Cesta Família Swift',
+        head: '🏠 Kit Completo Mensal',
+        desc: 'Cesta com 15kg de produtos Swift variados: carnes nobres, hambúrgueres artesanais, frangos premium',
+        coins: 1200,
+        category: 'gourmet',
+        isNew: false,
+        stock: true,
+        highlight: true
+      }
+    ];
+
+    let userCredits = 2150; // Nível Gold Elite
+    let filteredRewards = [...rewardsData];
+    let currentReward = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Lucide icons
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      renderRewards();
+      setupEventListeners();
+      updateStats();
+    });
+
+    function renderRewards() {
+      const grid = document.getElementById('rewardsGrid');
+      const emptyState = document.getElementById('emptyState');
+      
+      if (filteredRewards.length === 0) {
+        grid.innerHTML = '';
+        grid.classList.add('d-none');
+        emptyState.classList.remove('d-none');
+        return;
+      }
+
+      grid.classList.remove('d-none');
+      emptyState.classList.add('d-none');
+
+      grid.innerHTML = filteredRewards.map(reward => {
+        const canRedeem = userCredits >= reward.coins;
+        const remaining = reward.coins - userCredits;
+        
+        return `
+          <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="reward-card ${canRedeem ? 'can-redeem' : ''} ${reward.highlight ? 'reward-highlight' : ''}" data-reward-id="${reward.id}">
+              ${reward.isNew ? '<div class="reward-badge-new">Novo</div>' : ''}
+              ${canRedeem ? '<div class="reward-badge-redeemable">🌟 Disponível!</div>' : ''}
+              ${reward.highlight ? '<div class="reward-badge-exclusive">★ Produto Swift</div>' : ''}
+              
+              <div class="reward-icon">
+                <i data-lucide="${reward.icon}" style="width: 40px; height: 40px;"></i>
+              </div>
+              
+              <h5 class="reward-title">${reward.title}</h5>
+              <p class="reward-subtitle">${reward.head}</p>
+              <p class="reward-description">${reward.desc}</p>
+              
+              <div class="reward-price">
+                <i data-lucide="coins" style="width: 20px; height: 20px;"></i>
+                <span class="price-value">${reward.coins.toLocaleString('pt-BR')}</span>
+                <span class="price-label">créditos</span>
+              </div>
+              
+              ${canRedeem ? 
+                `<div class="reward-progress">
+                  <div class="progress-bar-filled"></div>
+                </div>
+                <p class="reward-status success">✓ Você pode resgatar!</p>` :
+                `<div class="reward-progress">
+                  <div class="progress-bar-partial" style="width: ${(userCredits/reward.coins)*100}%"></div>
+                </div>
+                <p class="reward-status pending">${reward.highlight ? '🥩🍤🍔 ' : ''}Faltam ${remaining.toLocaleString('pt-BR')} créditos</p>`
+              }
+              
+              <div class="reward-actions">
+                <button class="btn btn-brand w-100" onclick="showRewardDetail(${reward.id})" ${!canRedeem ? 'disabled' : ''}>
+                  <i data-lucide="${canRedeem ? 'check-circle' : 'lock'}" class="me-2" style="width: 16px; height: 16px;"></i>
+                  ${canRedeem ? 'Resgatar' : 'Bloqueado'}
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Reinitialize Lucide icons
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      updateResultsCount();
+    }
+
+    function showRewardDetail(id) {
+      currentReward = rewardsData.find(r => r.id === id);
+      if (!currentReward) return;
+
+      document.getElementById('modalRewardTitle').textContent = currentReward.title;
+      document.getElementById('modalRewardHead').textContent = currentReward.head;
+      document.getElementById('modalRewardDesc').textContent = currentReward.desc;
+      document.getElementById('modalRewardPrice').textContent = currentReward.coins.toLocaleString('pt-BR');
+      
+      const iconElement = document.getElementById('modalRewardIcon');
+      iconElement.setAttribute('data-lucide', currentReward.icon);
+      
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      const modal = new bootstrap.Modal(document.getElementById('rewardDetailModal'));
+      modal.show();
+    }
+
+    function redeemReward() {
+      if (!currentReward) return;
+
+      // Fecha o modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById('rewardDetailModal'));
+      modal.hide();
+
+      // Mostra toast de sucesso
+      showSuccessToast(`🎉 Parabéns! Você resgatou: ${currentReward.title}`, 
+                       'Sua recompensa será processada em breve. Acompanhe na sua carteira.');
+      
+      // Simula dedução de créditos
+      userCredits -= currentReward.coins;
+      document.getElementById('userCredits').textContent = userCredits.toLocaleString('pt-BR');
+      
+      // Re-renderiza para atualizar status
+      setTimeout(() => {
+        renderRewards();
+        updateStats();
+      }, 500);
+    }
+
+    function showSuccessToast(title, message) {
+      const toastContainer = document.getElementById('toastContainer');
+      const toastId = 'toast_' + Date.now();
+      
+      const toastHTML = `
+        <div class="toast align-items-center border-0 shadow-lg" role="alert" id="${toastId}" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white;">
+          <div class="d-flex">
+            <div class="toast-body">
+              <div class="d-flex align-items-start">
+                <i data-lucide="check-circle" class="me-2" style="width: 24px; height: 24px; flex-shrink: 0;"></i>
+                <div>
+                  <strong class="d-block mb-1">${title}</strong>
+                  <small>${message}</small>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+          </div>
+        </div>
+      `;
+      
+      toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+      
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+      
+      const toastElement = document.getElementById(toastId);
+      const toast = new bootstrap.Toast(toastElement, { delay: 5000 });
+      toast.show();
+      
+      toastElement.addEventListener('hidden.bs.toast', () => {
+        toastElement.remove();
+      });
+    }
+
+    function setupEventListeners() {
+      // Category filter
+      document.getElementById('categoryFilter').addEventListener('change', applyFilters);
+      
+      // Credit range filter
+      document.getElementById('creditRangeFilter').addEventListener('change', applyFilters);
+      
+      // Availability filter
+      document.querySelectorAll('input[name="availability"]').forEach(radio => {
+        radio.addEventListener('change', applyFilters);
+      });
+      
+      // Clear filters
+      document.getElementById('clearFiltersBtn').addEventListener('click', clearAllFilters);
+    }
+
+    function applyFilters() {
+      const category = document.getElementById('categoryFilter').value;
+      const creditRange = document.getElementById('creditRangeFilter').value;
+      const availability = document.querySelector('input[name="availability"]:checked').value;
+
+      filteredRewards = rewardsData.filter(reward => {
+        // Category filter
+        if (category !== 'all' && reward.category !== category) return false;
+        
+        // Credit range filter
+        if (creditRange !== 'all') {
+          if (creditRange === '0-1000' && reward.coins > 1000) return false;
+          if (creditRange === '1000-2500' && (reward.coins < 1000 || reward.coins > 2500)) return false;
+          if (creditRange === '2500-5000' && (reward.coins < 2500 || reward.coins > 5000)) return false;
+          if (creditRange === '5000+' && reward.coins < 5000) return false;
+        }
+        
+        // Availability filter
+        if (availability === 'redeemable' && userCredits < reward.coins) return false;
+        if (availability === 'new' && !reward.isNew) return false;
+        
+        return true;
+      });
+
+      renderRewards();
+      updateStats();
+    }
+
+    function clearAllFilters() {
+      document.getElementById('categoryFilter').value = 'all';
+      document.getElementById('creditRangeFilter').value = 'all';
+      document.getElementById('avail-all').checked = true;
+      
+      filteredRewards = [...rewardsData];
+      renderRewards();
+      updateStats();
+    }
+
+    function updateResultsCount() {
+      document.getElementById('resultsCount').textContent = 
+        `Mostrando ${filteredRewards.length} de ${rewardsData.length} recompensas`;
+    }
+
+    function updateStats() {
+      const redeemableCount = rewardsData.filter(r => userCredits >= r.coins).length;
+      const almostCount = rewardsData.filter(r => {
+        const remaining = r.coins - userCredits;
+        return remaining > 0 && remaining <= 500;
+      }).length;
+
+      document.getElementById('redeemableCount').textContent = redeemableCount;
+      document.getElementById('almostCount').textContent = almostCount;
+    }
+  </script>
+</body>
+</html>
+

@@ -145,26 +145,51 @@ rewards:
   moreTitle: "O que você ainda pode ganhar?"
   details: "Ver Detalhes"
   items:
-    - icon: "trophy"
+    - icon: "package"
+      title: "Caixa Seleção Premium Swift"
+      head: "🥩🍤🍔 Kit Gourmet Completo"
+      desc: "Picanha nobre 2kg + Camarão argentino 1kg + 8 Hambúrguers Gourmet Swift. Viva a qualidade que você vende!"
+      coins: "2.000"
+      category: "gourmet"
+      badge: "Produto Swift"
+    - icon: "flame"
+      title: "Kit Churrasco Elite"
+      head: "🔥 Carne Angus Premium"
+      desc: "4kg de cortes premium Angus + Temperos Swift + Tábua personalizada"
+      coins: "1.800"
+      category: "gourmet"
+      badge: "Exclusivo"
+    - icon: "palmtree"
       title: "Swift Weekend"
       head: "2 Noites Resort 5★"
-      desc: "Resort 5 estrelas + Jantar completo com os melhores cortes Swift"
+      desc: "Resort 5 estrelas all-inclusive + Jantar com os melhores cortes Swift em destino paradisíaco"
       coins: "2.500"
+      category: "travel"
     - icon: "briefcase"
       title: "Dia do CEO"
       head: "Experiência Executiva"
-      desc: "Passe um dia como CEO da Swift e conheça os bastidores da empresa"
+      desc: "Passe um dia como CEO da Swift: participe de reuniões estratégicas e conheça os bastidores"
       coins: "3.000"
+      category: "experience"
+      badge: "Novo"
     - icon: "utensils"
-      title: "Faca + Avental"
-      head: "Kit Profissional"
-      desc: "Faca premium e avental personalizado com logo Swift"
+      title: "Faca + Avental Pro"
+      head: "Kit Profissional Chef"
+      desc: "Faca premium de chef + Avental bordado Swift + Kit 6 temperos exclusivos"
       coins: "800"
+      category: "product"
     - icon: "sparkles"
-      title: "Concierge Swift"
-      head: "Experiência VIP"
-      desc: "Atendimento personalizado, presente surpresa e aventura premium"
+      title: "Concierge Swift Elite"
+      head: "Experiência VIP Família"
+      desc: "Atendimento personalizado, presente surpresa exclusivo e aventura premium para você e sua família"
       coins: "5.000"
+      category: "vip"
+    - icon: "gift"
+      title: "Cesta Família Swift"
+      head: "🏠 Kit Completo Mensal"
+      desc: "Cesta com 15kg de produtos Swift variados: carnes, hambúrgueres, frangos premium"
+      coins: "1.200"
+      category: "gourmet"
 
 # Transactions Section
 transactions:
@@ -205,6 +230,16 @@ messages:
   nps:
     delta_prefix: "em relação à meta"
     last_update: "Última atualização:"
+  
+  motivational:
+    wallet_hero: "💰 Sua Carteira Swift — Você conquistou muito! Cada crédito é fruto do seu trabalho"
+    ranking_hero: "🏆 Seu time está brilhando! — Minha Loja está no Top 5% da rede Swift"
+    rewards_hero: "🎁 Troque seus créditos por prêmios incríveis! — Você conquistou muito, chegou a hora de colher os frutos"
+    level_up: "💎 Faltam só {credits} créditos para desbloquear nível {next_level} — Continue assim!"
+    almost_there: "🌟 Faltam só {credits} créditos para {reward} — Bora conquistar?"
+    achievement_unlocked: "🎉 Parabéns! Você desbloqueou: {achievement}"
+    ranking_up: "🚀 Sua loja subiu {positions} posições no Ranking Nacional — Time em alta!"
+    top_performer: "⭐ Você está no Top {percent}% da rede Swift — Excelente trabalho!"
 
 # Mock data for testing
 mock_data:
@@ -214,73 +249,103 @@ mock_data:
       nome: "Administrador Swift"
       email: "admin@swift.com.br"
       loja: "loja-001"
-      cargo: "Gerente Regional"
-      nivel: "Gold"
-      creditos: 2500
+      cargo: "Líder Regional Elite"
+      nivel: "Diamond"
+      creditos: 4850
+      badges: ["Top Performer", "Mentor Swift", "Visionary Leader"]
     
     colaborador:
       id: 2
       nome: "João Silva"
-      email: "colaborador@swift.com.br"
-      loja: "loja-002"
-      cargo: "Vendedor"
-      nivel: "Silver"
-      creditos: 1200
+      email: "joao.silva@swift.com.br"
+      loja: "loja-015"
+      cargo: "Consultor Elite Swift"
+      nivel: "Gold"
+      creditos: 2150
+      badges: ["Top NPS", "Cliente Estrela", "Missão Relâmpago"]
+      nivel_progresso: 85
 
 # Dashboard mock data
 dashboard_mock_data:
   transactions:
     - id: 1
-      date: "2025-01-05"
-      time: "09:10"
-      description: "🎁 Benefício fixo mensal (jan/2025)"
+      date: "2025-10-02"
+      time: "08:30"
+      description: "💎 Benefício Gold Elite Mensal (Out/2025) — Você está no nível Gold! Continue brilhando."
       amount: 300
       type: "credit"
       category: "benefit"
 
     - id: 2
-      date: "2025-01-05"
-      time: "12:45"
-      description: "🎟️ Campanha de voucher "Verão Swift" — BOOST de tempo limitado (Happy Hour) + multiplicador de equipe aplicado.⚡"
-      amount: 120
+      date: "2025-10-02"
+      time: "14:15"
+      description: "🔥 Campanha Relâmpago Cross-Sell +40% — Sua loja bateu a meta! Multiplicador 2x aplicado."
+      amount: 200
       type: "credit"
-      category: "voucher"
+      category: "campaign"
 
     - id: 3
-      date: "2025-01-04"
-      time: "16:20"
-      description: "🏆 Missão da loja concluída: cross-sell ≥ 35%"
-      amount: 150
+      date: "2025-10-01"
+      time: "16:45"
+      description: "🏆 Missão Concluída: NPS acima de 92 por 7 dias consecutivos — Parabéns, campeão!"
+      amount: 250
       type: "credit"
       category: "mission"
 
     - id: 4
-      date: "2025-01-04"
-      time: "18:55"
-      description: "🛒 Resgate de produto: Hambúrguer Gourmet Swift"
-      amount: -60
+      date: "2025-10-01"
+      time: "19:20"
+      description: "⭐ Cliente Estrela: NPS 10 recebido — Seu atendimento foi excepcional hoje!"
+      amount: 30
+      type: "credit"
+      category: "nps"
+
+    - id: 5
+      date: "2025-09-30"
+      time: "11:00"
+      description: "🎁 Resgate: Caixa Seleção Premium Swift (Picanha + Camarão + Hambúrguer) — Aproveite!"
+      amount: -2000
       type: "debit"
       category: "reward"
 
-    - id: 5
-      date: "2025-01-03"
-      time: "11:30"
-      description: "🌟 NPS Top 3 (NPS 92) — Troféu sazonal "Gold Tier" desbloqueado! Seu atendimento está no pódio do mês. 🥇📈"
+    - id: 6
+      date: "2025-09-29"
+      time: "17:30"
+      description: "🚀 Sua loja subiu 3 posições no Ranking Nacional — Time em alta!"
       amount: 180
       type: "credit"
-      category: "nps"
+      category: "ranking"
+
+    - id: 7
+      date: "2025-09-28"
+      time: "10:15"
+      description: "🎯 Desafio Relâmpago: Ticket médio >R$150 alcançado — Você é fera!"
+      amount: 120
+      type: "credit"
+      category: "challenge"
+
+    - id: 8
+      date: "2025-09-27"
+      time: "13:50"
+      description: "💫 Badge Desbloqueado: 'Campeão Swift' — Primeira vez no Top 5 Regional!"
+      amount: 300
+      type: "credit"
+      category: "achievement"
   
   user_stats:
-    total_credits: 1250
-    current_level: "Silver"
-    achievements_count: 8
-    missions_completed: 12
-    rank_position: 15
+    total_credits: 2150
+    current_level: "Gold"
+    achievements_count: 15
+    missions_completed: 24
+    rank_position: 4
     total_users: 150
-    nps: 92
-    top_percent: 3
-    nps_delta: 8
-    nps_updated_at: "hoje às 14:30"
+    nps: 92.8
+    top_percent: 5
+    nps_delta: 12
+    nps_updated_at: "hoje às 16:45"
+    level_progress: 85
+    next_level: "Platinum"
+    credits_to_next_level: 350
   
   polling:
     interval: 30000
@@ -477,6 +542,79 @@ user:
   name: "João Silva"
   level: "Silver"
   credits: 1250
+
+# Gamification System
+gamification:
+  levels:
+    - name: "Bronze"
+      min_credits: 0
+      max_credits: 1000
+      color: "#cd7f32"
+      benefits: "Benefício mensal: 200 créditos"
+    - name: "Silver"
+      min_credits: 1001
+      max_credits: 2000
+      color: "#c0c0c0"
+      benefits: "Benefício mensal: 250 créditos + Multiplicador 1.1x"
+    - name: "Gold"
+      min_credits: 2001
+      max_credits: 4000
+      color: "#ffd700"
+      benefits: "Benefício mensal: 300 créditos + Multiplicador 1.25x"
+    - name: "Platinum"
+      min_credits: 4001
+      max_credits: 7000
+      color: "#e5e4e2"
+      benefits: "Benefício mensal: 400 créditos + Multiplicador 1.5x + Prioridade resgates"
+    - name: "Diamond"
+      min_credits: 7001
+      max_credits: 999999
+      color: "#b9f2ff"
+      benefits: "Benefício mensal: 500 créditos + Multiplicador 2x + Acesso VIP + Recompensas exclusivas"
+
+  badges:
+    - id: "top_nps"
+      name: "Top NPS"
+      description: "NPS acima de 92 por 7 dias consecutivos"
+      icon: "star"
+      color: "#ffd700"
+    - id: "cliente_estrela"
+      name: "Cliente Estrela"
+      description: "Recebeu 10 avaliações NPS 10 em um mês"
+      icon: "sparkles"
+      color: "#ff69b4"
+    - id: "missao_relampago"
+      name: "Missão Relâmpago"
+      description: "Completou desafio em menos de 24h"
+      icon: "zap"
+      color: "#ffc107"
+    - id: "campeao_swift"
+      name: "Campeão Swift"
+      description: "Loja entrou no Top 5 Regional pela primeira vez"
+      icon: "trophy"
+      color: "#28a745"
+    - id: "mentor"
+      name: "Mentor Swift"
+      description: "Treinou 5+ novos colaboradores com sucesso"
+      icon: "users"
+      color: "#007bff"
+    - id: "vendas_ouro"
+      name: "Vendas de Ouro"
+      description: "Ticket médio >R$180 por 15 dias seguidos"
+      icon: "trending-up"
+      color: "#ff9800"
+
+  achievements:
+    - title: "🎯 Primeira Missão Concluída"
+      reward: 50
+    - title: "🏆 Top 10 Regional"
+      reward: 150
+    - title: "⭐ 100 NPS 10 Recebidos"
+      reward: 300
+    - title: "💎 Nível Gold Alcançado"
+      reward: 500
+    - title: "🔥 Streak de 30 dias"
+      reward: 200
 
 # Application configuration
 config:

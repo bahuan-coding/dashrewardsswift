@@ -3,88 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-content="app.title"></title>
-    <meta name="description" data-content="app.description" content="">
+    <title>Swift Elite Rewards - Acesso Rápido</title>
+    <meta name="description" content="Sistema de recompensas Swift Elite">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     
     <!-- Bootstrap 5.3 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <!-- Custom CSS -->
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/responsive-fixes.css" rel="stylesheet">
+    
+    <style>
+        .access-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .access-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .access-card {
+            background: white;
+            border-radius: 2rem;
+            padding: 4rem 3rem;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            animation: card-appear 0.8s ease-out;
+        }
+        
+        @keyframes card-appear {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .access-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: white;
+            animation: pulse-icon 3s ease-in-out infinite;
+        }
+        
+        .access-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .access-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        
+        .access-btn {
+            background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+            border: none;
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 2rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .access-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(202, 121, 87, 0.4);
+            color: white;
+        }
+        
+        .quick-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .quick-link {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: 1rem;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .quick-link:hover {
+            border-color: var(--brand-color);
+            background: rgba(202, 121, 87, 0.1);
+            color: var(--brand-color);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-card">
-            <div class="row g-0">
-                <!-- Painel Branded (Esquerdo) -->
-                <div class="col-lg-6">
-                    <div class="branded-panel h-100">
-                        <div class="branded-content">
-                            <div class="icon-circle mb-4">
-                                <i class="bi bi-trophy-fill"></i>
-                            </div>
-                            <h1 class="branded-title" data-content="login.branding.title"></h1>
-                            <p class="branded-text" data-content="login.branding.subtitle"></p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Painel Form (Direito) -->
-                <div class="col-lg-6">
-                    <div class="form-panel h-100">
-                        <div class="form-content">
-                            <div class="text-center mb-4">
-                                <h2 class="form-title" data-content="login.form.title"></h2>
-                                <p class="form-subtitle" data-content="login.form.subtitle"></p>
-                            </div>
-
-                            <form id="loginForm" class="needs-validation" novalidate>
-                                <!-- Campo Email -->
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">
-                                        <i class="bi bi-envelope me-2"></i><span data-content="login.form.fields.email.label"></span>
-                                    </label>
-                                    <input 
-                                        type="email" 
-                                        class="form-control" 
-                                        id="email" 
-                                        data-placeholder="login.form.fields.email.placeholder"
-                                        required
-                                    >
-                                    <div class="invalid-feedback" data-content="messages.validation.email_invalid"></div>
-                                </div>
-
-                                <!-- Campo Loja -->
-                                <div class="mb-4">
-                                    <label for="store" class="form-label">
-                                        <i class="bi bi-shop me-2"></i><span data-content="login.form.fields.store.label"></span>
-                                    </label>
-                                    <select class="form-select" id="store" data-options="login.form.fields.store.options" required>
-                                        <option value="" data-content="login.form.fields.store.placeholder"></option>
-                                    </select>
-                                    <div class="invalid-feedback" data-content="messages.validation.store_required"></div>
-                                </div>
-
-                                <!-- Botão de Login -->
-                                <button type="submit" class="btn btn-login w-100" data-content="login.form.button.text"></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+    <div class="access-container">
+        <div class="access-card">
+            <div class="access-icon">
+                <i data-lucide="trophy" style="width: 50px; height: 50px;"></i>
+            </div>
+            
+            <h1 class="access-title">Swift Elite Rewards</h1>
+            <p class="access-subtitle">Sistema de recompensas para colaboradores Swift</p>
+            
+            <a href="inicio.html" class="access-btn">
+                <i data-lucide="rocket" style="width: 24px; height: 24px;"></i>
+                Acessar Dashboard
+            </a>
+            
+            <div class="quick-links">
+                <a href="ranking.html" class="quick-link">
+                    <i data-lucide="trophy" style="width: 18px; height: 18px;"></i>
+                    Ranking
+                </a>
+                <a href="carteira.html" class="quick-link">
+                    <i data-lucide="wallet" style="width: 18px; height: 18px;"></i>
+                    Carteira
+                </a>
+                <a href="recompensas.html" class="quick-link">
+                    <i data-lucide="gift" style="width: 18px; height: 18px;"></i>
+                    Recompensas
+                </a>
             </div>
         </div>
     </div>
 
-    <!-- Alert Container -->
-    <div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
-
-    <!-- Bootstrap 5.3 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Content Loader -->
-    <script src="js/content-loader.js"></script>
-    <!-- Custom JS -->
-    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+        
+        // Opcional: Auto-redirect após 2 segundos (descomente se desejar)
+        // setTimeout(() => {
+        //     window.location.href = 'dashboard.html';
+        // }, 2000);
+    </script>
 </body>
 </html>

@@ -15,6 +15,7 @@
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <!-- Custom CSS -->
     <link href="css/styles.css" rel="stylesheet">
+    <link href="css/responsive-fixes.css" rel="stylesheet">
 </head>
 <body>
   <div class="d-flex min-vh-100">
@@ -44,9 +45,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="dashboard.html">
-              <i data-lucide="user" class="me-3" style="width: 20px; height: 20px;"></i>
-              <span data-content="nav.collaborator"></span>
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="ranking.html">
+              <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span data-content="nav.ranking"></span>
             </a>
           </li>
           <li class="nav-item">
@@ -56,15 +57,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#rewards">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="recompensas.html">
               <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
               <span data-content="nav.rewards"></span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#ranking">
-              <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
-              <span data-content="nav.ranking"></span>
             </a>
           </li>
         </ul>
@@ -112,37 +107,190 @@
       <!-- Container Principal -->
       <div class="container-fluid px-4 py-4">
 
-        <!-- Header Saldo Total em Benefícios -->
-        <div class="row mb-4">
-          <div class="col-12">
-            <div class="card border-0 shadow-sm rounded-3">
-              <div class="card-body p-4">
-                <!-- Título e Subtítulo -->
-                <h3 class="h5 mb-2 fw-bold text-dark" data-content="wallet.total_benefits.title">Saldo total em benefícios</h3>
+        <!-- Hero Carteira -->
+        <section class="mb-4">
+          <div class="wallet-hero">
+            <div class="wallet-hero-content">
+              <div class="wallet-hero-icon">
+                <i data-lucide="wallet" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h2 class="wallet-hero-title">💰 Sua Carteira Swift</h2>
+              <p class="wallet-hero-subtitle">Você conquistou muito! Cada crédito é fruto do seu trabalho</p>
+            </div>
+            <div class="wallet-total-display">
+              <div class="total-label">Saldo Total</div>
+              <div class="total-value" id="totalBalance">2.150</div>
+              <div class="total-currency">créditos Swift</div>
+            </div>
+          </div>
+        </section>
 
-                <!-- Valor Principal -->
-                <div class="d-flex align-items-baseline gap-3 mb-2">
-                  <h1 class="fs-2 fw-bold text-brand mb-0 lh-11 balance-blur" id="wallet-balance-value" data-content="wallet.total_benefits.value" aria-live="polite">1.250</h1>
-                  <button id="btn-toggle-visibility" class="btn btn-sm px-2 py-1" style="border: none; background: none; min-width: 32px; min-height: 32px; display: flex; align-items: center; justify-content: center;" aria-label="Mostrar saldo" aria-pressed="false">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-muted); opacity: 0.7;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                  </button>
-                  <span class="badge bg-light text-muted ms-2">Disponível</span>
+        <!-- Feedback Dinâmico -->
+        <div class="wallet-feedback mb-4" id="walletFeedback">
+          <div class="feedback-icon">🎉</div>
+          <div class="feedback-content">
+            <strong>+150 créditos adicionados hoje!</strong>
+            <p class="mb-0">Excelente trabalho! Continue assim e alcance novas recompensas.</p>
+          </div>
+        </div>
+
+        <!-- Cards de Saldo Detalhado -->
+        <section class="mb-4">
+          <h3 class="h5 fw-bold mb-3">Seus Saldos por Categoria</h3>
+          <div class="row g-3">
+            <!-- Créditos Swift Disponíveis -->
+            <div class="col-12 col-md-6 col-xl-3">
+              <div class="balance-card balance-card-swift">
+                <div class="balance-card-header">
+                  <div class="balance-icon">
+                    <i data-lucide="coins" style="width: 28px; height: 28px;"></i>
+                  </div>
+                  <span class="balance-badge">Resgatável</span>
                 </div>
-
-                <!-- CTAs -->
-                <div id="wallet-cta-container" class="d-flex gap-2">
-                  <button class="btn btn-primary btn-sm" onclick="window.SwiftEliteRewards?.redeem?.()">
+                <div class="balance-card-body">
+                  <h4 class="balance-title">Créditos Swift</h4>
+                  <div class="balance-amount">1.250</div>
+                  <p class="balance-desc">Créditos disponíveis para resgatar em prêmios</p>
+                </div>
+                <div class="balance-card-footer">
+                  <button class="btn btn-sm btn-outline-light w-100" onclick="location.href='recompensas.html'">
                     <i data-lucide="gift" class="me-1" style="width: 14px; height: 14px;"></i>
-                    Resgatar
-                  </button>
-                  <button class="btn btn-link btn-sm text-muted p-0" onclick="window.SwiftEliteRewards?.viewMissions?.()">
-                    Ver missões
+                    Ver Recompensas
                   </button>
                 </div>
               </div>
             </div>
+
+            <!-- Benefício Mensal -->
+            <div class="col-12 col-md-6 col-xl-3">
+              <div class="balance-card balance-card-monthly">
+                <div class="balance-card-header">
+                  <div class="balance-icon">
+                    <i data-lucide="gift" style="width: 28px; height: 28px;"></i>
+                  </div>
+                  <span class="balance-badge">Fixo</span>
+                </div>
+                <div class="balance-card-body">
+                  <h4 class="balance-title">Benefício Mensal</h4>
+                  <div class="balance-amount">300</div>
+                  <p class="balance-desc">Crédito fixo mensal Swift garantido</p>
+                </div>
+                <div class="balance-card-footer">
+                  <div class="next-credit">
+                    <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
+                    <span>Próximo em 28 dias</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Saldo de Missões -->
+            <div class="col-12 col-md-6 col-xl-3">
+              <div class="balance-card balance-card-missions">
+                <div class="balance-card-header">
+                  <div class="balance-icon">
+                    <i data-lucide="target" style="width: 28px; height: 28px;"></i>
+                  </div>
+                  <span class="balance-badge">Bônus</span>
+                </div>
+                <div class="balance-card-body">
+                  <h4 class="balance-title">Missões Concluídas</h4>
+                  <div class="balance-amount">450</div>
+                  <p class="balance-desc">Saldo bônus por objetivos alcançados</p>
+                </div>
+                <div class="balance-card-footer">
+                  <div class="missions-stats">
+                    <span class="stat-item">
+                      <i data-lucide="check-circle" style="width: 14px; height: 14px;"></i>
+                      12 missões
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Campanhas Sazonais -->
+            <div class="col-12 col-md-6 col-xl-3">
+              <div class="balance-card balance-card-seasonal">
+                <div class="balance-card-header">
+                  <div class="balance-icon">
+                    <i data-lucide="zap" style="width: 28px; height: 28px;"></i>
+                  </div>
+                  <span class="balance-badge badge-pulse">Temporário</span>
+                </div>
+                <div class="balance-card-body">
+                  <h4 class="balance-title">Verão Swift 2025</h4>
+                  <div class="balance-amount">150</div>
+                  <p class="balance-desc">Multiplicador 2x ativo até 31/03</p>
+                </div>
+                <div class="balance-card-footer">
+                  <div class="campaign-timer">
+                    <i data-lucide="clock" style="width: 14px; height: 14px;"></i>
+                    <span>Expira em 87 dias</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+
+        <!-- Evolução de Créditos -->
+        <section class="mb-4">
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-4">
+              <h3 class="h6 fw-bold mb-3">📈 Evolução dos Créditos (últimos 30 dias)</h3>
+              <div class="credits-evolution">
+                <div class="evolution-stat">
+                  <div class="stat-label">Início do Mês</div>
+                  <div class="stat-value text-muted">900</div>
+                </div>
+                <div class="evolution-arrow">
+                  <i data-lucide="trending-up" style="width: 32px; height: 32px; color: var(--success-color);"></i>
+                </div>
+                <div class="evolution-stat">
+                  <div class="stat-label">Hoje</div>
+                  <div class="stat-value text-success">2.150</div>
+                </div>
+                <div class="evolution-delta">
+                  <div class="delta-badge delta-positive">
+                    <i data-lucide="arrow-up" style="width: 16px; height: 16px;"></i>
+                    +1.250 créditos (+139%)
+                  </div>
+                </div>
+              </div>
+              <div class="evolution-progress mt-3">
+                <div class="progress-bar-evolution"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Progresso para Próximo Nível -->
+        <section class="mb-4">
+          <div class="card border-0 rounded-3 shadow-sm level-progress-card">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h3 class="h6 fw-bold mb-1">💎 Progresso de Nível</h3>
+                  <p class="small text-muted mb-0">Você está no nível <span class="level-badge level-gold">Gold</span></p>
+                </div>
+                <div class="text-end">
+                  <div class="fw-bold text-brand">85%</div>
+                  <div class="small text-muted">para Platinum</div>
+                </div>
+              </div>
+              
+              <div class="level-progress-bar mb-3">
+                <div class="level-progress-fill" style="width: 85%"></div>
+              </div>
+              
+              <div class="level-insight">
+                <i data-lucide="sparkles" style="width: 16px; height: 16px;"></i>
+                <span>Faltam apenas <strong>350 créditos</strong> para desbloquear <strong>Platinum Elite</strong> e ganhar Multiplicador 1.5x + Prioridade em resgates!</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
         <!-- Seção Transações Recentes -->
         <div class="row mb-4">
@@ -215,9 +363,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="dashboard.html">
-            <i data-lucide="user" class="me-3" style="width: 20px; height: 20px;"></i>
-            <span data-content="nav.collaborator">Colaborador</span>
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="ranking.html">
+            <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span data-content="nav.ranking">Ranking</span>
           </a>
         </li>
         <li class="nav-item">
@@ -227,15 +375,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#rewards">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="recompensas.html">
             <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
             <span data-content="nav.rewards">Recompensas</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#ranking">
-            <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
-            <span data-content="nav.ranking">Ranking</span>
           </a>
         </li>
       </ul>

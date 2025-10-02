@@ -12,6 +12,7 @@
 
   <!-- Estilos do projeto -->
   <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="stylesheet" href="./css/responsive-fixes.css" />
 
   <!-- Ícones Lucide -->
   <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -44,9 +45,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="dashboard.html">
-              <i data-lucide="user" class="me-3" style="width: 20px; height: 20px;"></i>
-              <span>Colaborador</span>
+            <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="ranking.html">
+              <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Ranking</span>
             </a>
           </li>
           <li class="nav-item">
@@ -56,15 +57,9 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#rewards">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="recompensas.html">
               <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
               <span>Recompensas</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="ranking.html">
-              <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
-              <span>Ranking</span>
             </a>
           </li>
         </ul>
@@ -121,6 +116,25 @@
       <!-- Container Principal -->
       <div class="container-fluid px-4 py-4">
         
+        <!-- Hero Motivacional -->
+        <section class="mb-4">
+          <div class="ranking-hero" id="heroMotivacional">
+            <div class="ranking-hero-content">
+              <div class="ranking-hero-icon">
+                <i data-lucide="trophy" style="width: 32px; height: 32px;"></i>
+              </div>
+              <h2 class="ranking-hero-title" id="heroTitle">Seu time está brilhando! 🌟</h2>
+              <p class="ranking-hero-subtitle" id="heroSubtitle">Minha Loja está no Top 10% da rede Swift</p>
+            </div>
+            <div class="ranking-hero-badges" id="heroBadges">
+              <!-- Badges dinâmicos -->
+            </div>
+          </div>
+        </section>
+
+        <!-- Notificações de Conquistas -->
+        <div class="achievement-toast-container" id="achievementContainer"></div>
+
         <!-- Filtros e Controles -->
         <section class="mb-4">
           <div class="card border-0 rounded-3 shadow-sm">
@@ -143,7 +157,16 @@
                   <label for="regionFilter" class="form-label fw-semibold mb-2">Região:</label>
                   <select class="form-select form-select-sm" id="regionFilter" style="min-width: 160px;">
                     <option value="all">Todas as Regiões</option>
-                    <!-- Opções preenchidas dinamicamente -->
+                  </select>
+                </div>
+
+                <!-- Filtro por Categoria -->
+                <div class="col-12 col-md-auto">
+                  <label for="categoryFilter" class="form-label fw-semibold mb-2">Categoria:</label>
+                  <select class="form-select form-select-sm" id="categoryFilter" style="min-width: 160px;">
+                    <option value="nps">NPS Geral</option>
+                    <option value="ticket">Ticket Médio</option>
+                    <option value="crosssell">Cross-Sell</option>
                   </select>
                 </div>
 
@@ -168,7 +191,7 @@
         <!-- Loading State -->
         <div id="loadingState" class="text-center py-5">
           <div class="loading-spinner mx-auto mb-3"></div>
-          <p class="text-muted">Carregando dados do ranking...</p>
+          <p class="text-muted fw-bold">⚡ Calculando posições… Quem será o campeão?</p>
         </div>
 
         <!-- Error State -->
@@ -191,15 +214,19 @@
         <!-- Empty State -->
         <div id="emptyState" class="d-none">
           <div class="card border-0 rounded-3 shadow-sm">
-            <div class="card-body p-4 text-center">
-              <div class="icon-pill-brand mx-auto mb-3">
-                <i data-lucide="search" style="width: 24px; height: 24px;"></i>
+            <div class="card-body p-5 text-center">
+              <div class="empty-state-icon mx-auto mb-4">
+                <i data-lucide="trophy" style="width: 64px; height: 64px; stroke-width: 1.5;"></i>
               </div>
-              <h5 class="fw-bold text-dark mb-2">Nenhum Resultado Encontrado</h5>
-              <p class="text-muted mb-3">Não encontramos lojas que correspondam aos filtros aplicados.</p>
-              <button class="btn btn-outline-brand" id="btnClearFilters">
+              <h5 class="fw-bold text-dark mb-2">Continue Conquistando!</h5>
+              <p class="text-muted mb-4">Complete missões e apareça no ranking. Cada atendimento conta para o sucesso do seu time!</p>
+              <button class="btn btn-brand" id="btnClearFilters">
                 <i data-lucide="filter-x" class="me-2" style="width: 16px; height: 16px;"></i>
-                Limpar Filtros
+                Ver Todos os Resultados
+              </button>
+              <button class="btn btn-outline-brand ms-2" onclick="location.href='inicio.html'">
+                <i data-lucide="target" class="me-2" style="width: 16px; height: 16px;"></i>
+                Ver Minhas Missões
               </button>
             </div>
           </div>
@@ -268,13 +295,14 @@
             </div>
           </section>
 
-          <!-- Card "Minha Loja" -->
+          <!-- Card "Minha Loja" Expandido -->
           <section class="mb-4" id="minhaLojaSection">
-            <div class="card border-0 rounded-3 shadow-sm my-store-card">
+            <div class="card border-0 rounded-3 shadow-sm my-store-card-expanded">
               <div class="card-body p-4">
-                <div class="row align-items-center">
-                  <div class="col-12 col-md-8">
-                    <div class="d-flex align-items-center mb-2">
+                <div class="row">
+                  <!-- Posição e Info -->
+                  <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+                    <div class="d-flex align-items-center">
                       <div class="my-store-position me-3">
                         <span id="myStorePosition">--</span>
                       </div>
@@ -283,16 +311,81 @@
                           <h5 class="fw-bold mb-0" id="myStoreName">Minha Loja</h5>
                           <span class="badge my-store-badge">Minha Loja</span>
                         </div>
-                        <p class="text-muted mb-0" id="myStoreLocation">-</p>
+                        <p class="text-muted mb-0 small" id="myStoreLocation">-</p>
                       </div>
                     </div>
                   </div>
-                  <div class="col-12 col-md-4 text-md-end">
-                    <div class="my-store-nps">
-                      <div class="my-store-nps-value" id="myStoreNps">--</div>
-                      <div class="my-store-nps-delta" id="myStoreNpsDelta">--</div>
+
+                  <!-- Métricas Principais -->
+                  <div class="col-12 col-lg-8">
+                    <div class="row g-3">
+                      <!-- NPS Atual -->
+                      <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                          <div class="metric-label">NPS Atual</div>
+                          <div class="metric-value text-brand" id="myStoreNps">--</div>
+                          <div class="metric-delta" id="myStoreNpsDelta">--</div>
+                        </div>
+                      </div>
+
+                      <!-- Média da Rede -->
+                      <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                          <div class="metric-label">Média Rede</div>
+                          <div class="metric-value" id="networkAverage">--</div>
+                          <div class="metric-compare" id="compareNetwork">--</div>
+                        </div>
+                      </div>
+
+                      <!-- Posições Subidas -->
+                      <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                          <div class="metric-label">Evolução</div>
+                          <div class="metric-value" id="positionChange">--</div>
+                          <div class="metric-status" id="evolutionStatus">posições</div>
+                        </div>
+                      </div>
+
+                      <!-- Créditos Ganhos -->
+                      <div class="col-6 col-md-3">
+                        <div class="metric-card">
+                          <div class="metric-label">Créditos</div>
+                          <div class="metric-value text-success" id="creditsEarned">--</div>
+                          <div class="metric-status">este mês</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                </div>
+
+                <!-- Progress Bar para Próxima Meta -->
+                <div class="mt-4">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small fw-semibold text-muted">
+                      <i data-lucide="target" class="me-1" style="width: 14px; height: 14px;"></i>
+                      Progresso para subir no ranking
+                    </span>
+                    <span class="small fw-bold text-brand" id="progressPercent">--</span>
+                  </div>
+                  <div class="goal-progress-bar">
+                    <div class="goal-progress-fill" id="progressFill"></div>
+                  </div>
+                  <p class="small text-muted mt-2 mb-0" id="progressInsight">
+                    <i data-lucide="lightbulb" class="me-1" style="width: 14px; height: 14px;"></i>
+                    <span id="insightText">Carregando insight...</span>
+                  </p>
+                </div>
+
+                <!-- CTAs -->
+                <div class="mt-4 d-flex flex-wrap gap-2">
+                  <button class="btn btn-brand btn-sm" onclick="location.href='inicio.html'">
+                    <i data-lucide="rocket" class="me-1" style="width: 16px; height: 16px;"></i>
+                    Ver Missões Ativas
+                  </button>
+                  <button class="btn btn-outline-brand btn-sm" onclick="location.href='carteira.html'">
+                    <i data-lucide="gift" class="me-1" style="width: 16px; height: 16px;"></i>
+                    Trocar Créditos
+                  </button>
                 </div>
               </div>
             </div>
@@ -359,9 +452,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="dashboard.html">
-            <i data-lucide="user" class="me-3" style="width: 20px; height: 20px;"></i>
-            <span>Colaborador</span>
+          <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="ranking.html">
+            <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Ranking</span>
           </a>
         </li>
         <li class="nav-item">
@@ -371,15 +464,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#rewards">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="recompensas.html">
             <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
             <span>Recompensas</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="ranking.html">
-            <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
-            <span>Ranking</span>
           </a>
         </li>
       </ul>
@@ -412,11 +499,13 @@
   <script src="./data/ranking.js"></script>
   <script src="./js/content-loader.js"></script>
   <script src="./js/app.js"></script>
+  <script src="./js/ranking-gamification.js"></script>
   
   <!-- Ranking Page Script -->
   <script>
-    // Global ranking instance
+    // Global instances
     let rankingData = null;
+    let gamification = null;
 
     document.addEventListener('DOMContentLoaded', async () => {
       try {
@@ -428,8 +517,10 @@
           console.log('✅ Ícones Lucide inicializados');
         }
 
-        // Initialize ranking data
+        // Initialize ranking data and gamification
         rankingData = new RankingData();
+        gamification = new RankingGamification();
+        
         await loadRankingData();
 
         // Setup event listeners
@@ -485,6 +576,27 @@
       renderMinhaLoja();
       renderRankingList();
       updateRankingCount();
+      
+      // Initialize gamification features
+      if (gamification) {
+        const minhaLoja = rankingData.getMinhaLoja();
+        const allStores = rankingData.getFilteredData();
+        const networkData = calculateNetworkData();
+        
+        gamification.initialize(minhaLoja, allStores, networkData);
+      }
+    }
+    
+    function calculateNetworkData() {
+      const allData = rankingData.data;
+      const totalNPS = allData.reduce((sum, store) => sum + store.nps, 0);
+      const average = totalNPS / allData.length;
+      
+      return {
+        totalStores: allData.length,
+        average: average,
+        median: allData[Math.floor(allData.length / 2)]?.nps || 0
+      };
     }
 
     function renderPodium() {

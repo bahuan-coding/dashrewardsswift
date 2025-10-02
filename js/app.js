@@ -321,13 +321,11 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         // Detecta qual página estamos
         const isLoginPage = window.location.pathname.includes('index.html') || window.location.pathname === '/';
-        const isDashboardPage = window.location.pathname.includes('dashboard.html');
         const isHomePage = window.location.pathname.includes('inicio.html');
         const isWalletPage = window.location.pathname.includes('carteira.html');
         
         console.log('🔍 Detecção de página:', {
             isLoginPage,
-            isDashboardPage,
             isHomePage,
             isWalletPage,
             currentPath: window.location.pathname

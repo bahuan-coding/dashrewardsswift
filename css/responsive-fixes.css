@@ -1,0 +1,720 @@
+/* =============================================================================
+   RESPONSIVITY FIXES & ENHANCEMENTS - Swift Elite Rewards
+   100% Mobile-First (320px) to 4K (3840px) Support
+   ============================================================================= */
+
+/* =============================================================================
+   1. FLUID TYPOGRAPHY SYSTEM - Scales across all devices
+   ============================================================================= */
+
+html {
+    /* Base font-size for rem calculations */
+    font-size: 16px;
+}
+
+/* Ultra-small devices (320px - 374px) */
+@media (max-width: 374px) {
+    html { font-size: 14px; }
+    
+    .container-fluid {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+    
+    /* Smaller buttons for tiny screens */
+    .btn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Small devices (375px - 575px) */
+@media (min-width: 375px) and (max-width: 575.98px) {
+    html { font-size: 15px; }
+}
+
+/* Medium devices (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    html { font-size: 16px; }
+}
+
+/* Large devices (992px - 1439px) */
+@media (min-width: 992px) and (max-width: 1439px) {
+    html { font-size: 16px; }
+}
+
+/* Extra large devices (1440px - 1919px) */
+@media (min-width: 1440px) and (max-width: 1919px) {
+    html { font-size: 17px; }
+}
+
+/* 2K displays (1920px - 2559px) */
+@media (min-width: 1920px) and (max-width: 2559px) {
+    html { font-size: 18px; }
+}
+
+/* 4K displays (2560px+) */
+@media (min-width: 2560px) {
+    html { font-size: 20px; }
+    
+    /* Max-width container for readability */
+    .container-fluid {
+        max-width: 2400px;
+        margin: 0 auto;
+    }
+}
+
+/* Ultra-wide 4K (3840px+) */
+@media (min-width: 3840px) {
+    html { font-size: 24px; }
+    
+    .container-fluid {
+        max-width: 3200px;
+        margin: 0 auto;
+    }
+}
+
+/* =============================================================================
+   2. SIDEBAR RESPONSIVE FIXES
+   ============================================================================= */
+
+.sidebar {
+    width: 280px !important;
+    min-width: 280px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 1199px) {
+    .sidebar {
+        width: 240px !important;
+        min-width: 240px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .sidebar {
+        display: none !important;
+    }
+}
+
+/* Ensure main content takes full width when sidebar hidden */
+@media (max-width: 991.98px) {
+    main.flex-grow-1 {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* =============================================================================
+   3. GRID SYSTEM ENHANCEMENTS
+   ============================================================================= */
+
+/* Cards grid - responsive columns */
+.row.g-3 > [class*="col-"] .card,
+.row.g-4 > [class*="col-"] .card {
+    height: 100%;
+    min-height: 0;
+}
+
+/* Ensure equal height cards */
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-body {
+    flex: 1;
+}
+
+/* Ultra-small screens: Stack everything */
+@media (max-width: 374px) {
+    .col-6 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* =============================================================================
+   4. IMAGE & MEDIA RESPONSIVE FIXES
+   ============================================================================= */
+
+/* All images responsive by default */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Profile images */
+.profile-minimal img,
+.sidebar img {
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+@media (max-width: 374px) {
+    .profile-minimal img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* Carousel images */
+.carousel-image-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (max-width: 374px) {
+    .carousel-image-container {
+        height: 100px !important;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 575.98px) {
+    .carousel-image-container {
+        height: 120px;
+    }
+}
+
+/* =============================================================================
+   5. HERO SECTIONS RESPONSIVE FIXES
+   ============================================================================= */
+
+/* All hero sections */
+.ranking-hero,
+.rewards-hero,
+.wallet-hero,
+.dashboard-hero {
+    padding: clamp(1rem, 3vw, 2rem);
+    border-radius: clamp(0.5rem, 1vw, 1rem);
+}
+
+.ranking-hero-title,
+.rewards-hero-title,
+.wallet-hero-title,
+.dashboard-hero-greeting {
+    font-size: clamp(1rem, 4vw, 1.75rem);
+    line-height: 1.2;
+}
+
+.ranking-hero-subtitle,
+.rewards-hero-subtitle,
+.wallet-hero-subtitle,
+.dashboard-hero-subtitle {
+    font-size: clamp(0.875rem, 2.5vw, 1rem);
+}
+
+/* Hero icons */
+.ranking-hero-icon,
+.wallet-hero-icon {
+    width: clamp(40px, 8vw, 60px);
+    height: clamp(40px, 8vw, 60px);
+}
+
+/* =============================================================================
+   6. CARD COMPONENTS RESPONSIVE FIXES
+   ============================================================================= */
+
+.card {
+    border-radius: clamp(0.5rem, 1vw, 1rem);
+    overflow: hidden;
+}
+
+.card-body {
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* Podium cards */
+.podium-card {
+    padding: clamp(0.75rem, 2vw, 1.5rem);
+    min-height: clamp(180px, 30vw, 280px);
+}
+
+.podium-first {
+    min-height: clamp(200px, 35vw, 320px);
+}
+
+@media (min-width: 768px) {
+    .podium-first {
+        transform: scale(1.05);
+    }
+}
+
+/* Reward cards */
+.reward-card {
+    padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.reward-icon {
+    width: clamp(60px, 10vw, 80px);
+    height: clamp(60px, 10vw, 80px);
+}
+
+/* Balance cards */
+.balance-card {
+    padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.balance-icon {
+    width: clamp(48px, 8vw, 56px);
+    height: clamp(48px, 8vw, 56px);
+}
+
+/* =============================================================================
+   7. BUTTON RESPONSIVE FIXES
+   ============================================================================= */
+
+.btn {
+    min-height: 44px; /* Accessibility: Touch target */
+    padding: 0.625rem 1.25rem;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    border-radius: clamp(0.375rem, 0.5vw, 0.5rem);
+}
+
+.btn-sm {
+    min-height: 36px;
+    padding: 0.5rem 1rem;
+    font-size: clamp(0.75rem, 1.8vw, 0.875rem);
+}
+
+@media (max-width: 374px) {
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+    
+    .btn-sm {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Button groups */
+.btn-group {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+@media (max-width: 575.98px) {
+    .btn-group .btn {
+        flex: 1 1 auto;
+        min-width: max-content;
+    }
+}
+
+/* =============================================================================
+   8. TABLE RESPONSIVE FIXES
+   ============================================================================= */
+
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 0.5rem;
+}
+
+.table {
+    min-width: 600px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 767.98px) {
+    .table {
+        min-width: 500px;
+        font-size: 0.875rem;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .table {
+        min-width: 450px;
+        font-size: 0.8rem;
+    }
+    
+    .table th,
+    .table td {
+        padding: 0.375rem 0.5rem;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 374px) {
+    .table {
+        min-width: 400px;
+        font-size: 0.75rem;
+    }
+}
+
+/* =============================================================================
+   9. NAVIGATION & HEADER RESPONSIVE FIXES
+   ============================================================================= */
+
+/* Sticky header */
+.sticky-top {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    background: white;
+}
+
+header.sticky-top .container-fluid {
+    padding-top: clamp(0.75rem, 2vw, 1rem);
+    padding-bottom: clamp(0.75rem, 2vw, 1rem);
+}
+
+/* Header title */
+header h1,
+header .h4 {
+    font-size: clamp(1.125rem, 3vw, 1.5rem);
+    line-height: 1.3;
+}
+
+/* Offcanvas mobile menu */
+@media (max-width: 991.98px) {
+    .offcanvas {
+        max-width: 280px;
+    }
+}
+
+@media (max-width: 374px) {
+    .offcanvas {
+        max-width: 260px;
+    }
+}
+
+/* =============================================================================
+   10. SPACING SYSTEM RESPONSIVE
+   ============================================================================= */
+
+/* Container padding scales */
+.container-fluid {
+    padding-left: clamp(0.75rem, 2vw, 1.5rem);
+    padding-right: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* Section spacing */
+section {
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+}
+
+/* Gap utilities responsive */
+.row {
+    --bs-gutter-x: clamp(0.75rem, 2vw, 1.5rem);
+    --bs-gutter-y: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* =============================================================================
+   11. ICON SIZING RESPONSIVE
+   ============================================================================= */
+
+/* Lucide icons in UI */
+[data-lucide] {
+    width: 1.25em;
+    height: 1.25em;
+    flex-shrink: 0;
+}
+
+.icon-pill,
+.icon-pill-brand {
+    width: clamp(40px, 6vw, 48px);
+    height: clamp(40px, 6vw, 48px);
+}
+
+.icon-circle-small {
+    width: clamp(32px, 5vw, 40px);
+    height: clamp(32px, 5vw, 40px);
+}
+
+/* =============================================================================
+   12. MODAL RESPONSIVE FIXES
+   ============================================================================= */
+
+.modal-dialog {
+    margin: 1rem;
+    max-width: calc(100% - 2rem);
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 500px;
+        margin: 1.75rem auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .modal-dialog {
+        max-width: 600px;
+    }
+}
+
+/* =============================================================================
+   13. FILTER & FORM CONTROLS RESPONSIVE
+   ============================================================================= */
+
+.form-select,
+.form-control {
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    padding: 0.625rem 1rem;
+}
+
+@media (max-width: 575.98px) {
+    .form-select,
+    .form-control {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* Filter controls stack on mobile */
+@media (max-width: 767.98px) {
+    .card-body .row.g-3 {
+        gap: 0.75rem !important;
+    }
+    
+    .card-body .row.g-3 > [class*="col-"] {
+        width: 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* =============================================================================
+   14. BADGE & LABEL RESPONSIVE
+   ============================================================================= */
+
+.badge {
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
+    padding: clamp(0.25rem, 1vw, 0.375rem) clamp(0.5rem, 1.5vw, 0.75rem);
+}
+
+/* Podium position badges */
+.podium-position {
+    width: clamp(28px, 5vw, 32px);
+    height: clamp(28px, 5vw, 32px);
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+}
+
+.podium-first .podium-position {
+    width: clamp(32px, 6vw, 36px);
+    height: clamp(32px, 6vw, 36px);
+}
+
+/* =============================================================================
+   15. PROGRESS BARS RESPONSIVE
+   ============================================================================= */
+
+.goal-progress-bar,
+.reward-progress,
+.level-progress-bar {
+    height: clamp(6px, 1vw, 8px);
+    border-radius: 999px;
+}
+
+/* =============================================================================
+   16. TOAST & NOTIFICATION RESPONSIVE
+   ============================================================================= */
+
+.achievement-toast-container {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    max-width: clamp(280px, 40vw, 360px);
+    z-index: 1050;
+}
+
+@media (max-width: 767.98px) {
+    .achievement-toast-container {
+        left: 10px;
+        right: 10px;
+        max-width: calc(100% - 20px);
+    }
+}
+
+/* =============================================================================
+   17. STAT DISPLAYS RESPONSIVE
+   ============================================================================= */
+
+.stat-value,
+.metric-value,
+.metric-value-large {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    line-height: 1.1;
+}
+
+.balance-amount,
+.podium-nps-value {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.total-value {
+    font-size: clamp(2rem, 6vw, 3rem);
+}
+
+/* =============================================================================
+   18. UTILITY CLASSES FOR RESPONSIVENESS
+   ============================================================================= */
+
+/* Hide/show at breakpoints */
+.d-320-none { display: none !important; }
+@media (min-width: 375px) { .d-320-none { display: block !important; } }
+
+.d-4k-none { display: block !important; }
+@media (min-width: 2560px) { .d-4k-none { display: none !important; } }
+
+/* Text overflow handling */
+.text-truncate-responsive {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .text-truncate-responsive {
+        white-space: normal;
+    }
+}
+
+/* =============================================================================
+   19. PREVENT OVERFLOW & HORIZONTAL SCROLL
+   ============================================================================= */
+
+body,
+html {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+.row {
+    margin-left: calc(var(--bs-gutter-x) * -0.5);
+    margin-right: calc(var(--bs-gutter-x) * -0.5);
+}
+
+* {
+    box-sizing: border-box;
+    min-width: 0; /* Prevent flex item overflow */
+}
+
+/* =============================================================================
+   20. 4K & ULTRA-WIDE OPTIMIZATIONS
+   ============================================================================= */
+
+/* Limit content width on ultra-wide screens */
+@media (min-width: 1920px) {
+    main > .container-fluid {
+        max-width: 1800px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 2560px) {
+    main > .container-fluid {
+        max-width: 2400px;
+    }
+    
+    /* Larger cards on 4K */
+    .card {
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+    
+    /* More spacing on 4K */
+    .row {
+        --bs-gutter-x: 2rem;
+        --bs-gutter-y: 2rem;
+    }
+}
+
+@media (min-width: 3840px) {
+    main > .container-fluid {
+        max-width: 3200px;
+    }
+    
+    /* Even larger spacing on ultra-wide */
+    .row {
+        --bs-gutter-x: 2.5rem;
+        --bs-gutter-y: 2.5rem;
+    }
+}
+
+/* =============================================================================
+   21. ACCESSIBILITY ENHANCEMENTS
+   ============================================================================= */
+
+/* Ensure minimum touch targets on mobile */
+@media (max-width: 767.98px) {
+    a,
+    button,
+    .btn,
+    .nav-link {
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+}
+
+/* =============================================================================
+   22. PRINT STYLES
+   ============================================================================= */
+
+@media print {
+    .sidebar,
+    .offcanvas,
+    .btn,
+    .sticky-top,
+    .carousel-control-prev,
+    .carousel-control-next,
+    .carousel-indicators {
+        display: none !important;
+    }
+    
+    .container-fluid {
+        max-width: 100%;
+        padding: 0;
+    }
+    
+    .card {
+        page-break-inside: avoid;
+    }
+}
+
+/* =============================================================================
+   23. REDUCED MOTION SUPPORT
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
