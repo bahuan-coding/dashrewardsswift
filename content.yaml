@@ -1,0 +1,491 @@
+# Swift Elite Rewards - Content Configuration
+# Cleaned version with only actively used content
+
+# App metadata
+app:
+  title: "Swift Elite Rewards - Login"
+  description: "Transforme suas conquistas em recompensas incríveis"
+  brand: "Swift Elite"
+
+# Login page content
+login:
+  branding:
+    title: "Swift Elite Rewards"
+    subtitle: "Transforme suas conquistas em recompensas incríveis."
+  
+  form:
+    title: "Bem-vindo de volta!"
+    subtitle: "Entre com suas credenciais para acessar sua conta"
+    
+    fields:
+      email:
+        label: "Email"
+        placeholder: "seu.email@swift.com.br"
+      
+      store:
+        label: "Loja"
+        placeholder: "Selecione sua loja"
+        options:
+          - value: "loja-001"
+            text: "Swift Shopping Center - São Paulo"
+          - value: "loja-002"
+            text: "Swift Plaza - Rio de Janeiro"
+          - value: "loja-003"
+            text: "Swift Mall - Belo Horizonte"
+          - value: "loja-004"
+            text: "Swift Center - Brasília"
+          - value: "loja-005"
+            text: "Swift Plaza - Salvador"
+          - value: "loja-006"
+            text: "Swift Shopping - Fortaleza"
+          - value: "loja-007"
+            text: "Swift Mall - Recife"
+          - value: "loja-008"
+            text: "Swift Center - Porto Alegre"
+          - value: "loja-009"
+            text: "Swift Plaza - Curitiba"
+          - value: "loja-010"
+            text: "Swift Shopping - Goiânia"
+    
+    button:
+      text: "Entrar"
+      loading_text: "Entrando..."
+
+# Dashboard content
+dashboard:
+  title: "Painel do Colaborador - Swift Elite Rewards"
+  description: "Painel de controle do colaborador Swift Elite Rewards"
+  heading: "Painel do Colaborador"
+  
+  # KPIs do Colaborador
+  kpis:
+    title: "Painel do Colaborador"
+    nps_label: "NPS"
+    rank_label: "Posição"
+    delta_label: "Variação vs meta"
+    balance_label: "Saldo"
+    actions:
+      extract: "Extrato"
+      redeem: "Resgatar"
+      missions: "Missões"
+    nps_tooltip: "NPS médio do período. 9–10 = promotores, 7–8 = neutros, ≤6 = detratores."
+
+  # Gamificação
+  gamification:
+    title: "Progresso"
+    streak_label: "Streak de assiduidade"
+    multiplier_label: "Multiplicador ativo"
+    next_tier_label: "Próximo nível"
+    recent_badges_label: "Badges recentes"
+
+  # Missões & Campanhas
+  missions:
+    title: "Missões & Campanhas"
+    tabs: 
+      active: "Ativas"
+      completed: "Concluídas"
+    progress_label: "Progresso"
+
+  # Widget de Transações
+  transactions_widget:
+    title: "Transações Recentes"
+    quick_filters: ["7d","30d","all"]
+    type_filters: ["credit","debit","all"]
+    link_full: "Ver extrato completo"
+    period_label: "Período"
+    type_label: "Tipo"
+
+  # Recomendações
+  recommendations:
+    title: "Você pode resgatar hoje"
+
+# Wallet page content
+wallet:
+  title: "Carteira - Swift Elite Rewards"
+  description: "Gerencie sua carteira Swift Elite e acompanhe suas transações"
+  header:
+    title: "Minha Carteira"
+  total_benefits:
+    title: "Saldo total em benefícios"
+    value: "1.250"
+
+# Navigation
+nav:
+  home: "Início"
+  collaborator: "Colaborador"
+  wallet: "Carteira"
+  rewards: "Recompensas"
+  ranking: "Ranking"
+  settings: "Configurações"
+  logout: "Sair"
+  close: "Close"
+
+# Actions
+actions:
+  statement: "Extrato"
+  redeem: "Resgatar"
+  ranking: "Ranking"
+
+# NPS Section
+nps:
+  label: "Seu NPS"
+  status: "Status do NPS"
+  extra: "Sua equipe está no TOP 10%!"
+
+# Benefits Section
+benefits:
+  title: "Benefícios"
+  kitTitle: "Kit Premium Swift"
+  kitSubtitle: "Faca + Avental"
+  redeem: "Resgatar"
+  redeemAction: "Resgate solicitado com sucesso!"
+
+# Rewards Section
+rewards:
+  moreTitle: "O que você ainda pode ganhar?"
+  details: "Ver Detalhes"
+  items:
+    - icon: "trophy"
+      title: "Swift Weekend"
+      head: "2 Noites Resort 5★"
+      desc: "Resort 5 estrelas + Jantar completo com os melhores cortes Swift"
+      coins: "2.500"
+    - icon: "briefcase"
+      title: "Dia do CEO"
+      head: "Experiência Executiva"
+      desc: "Passe um dia como CEO da Swift e conheça os bastidores da empresa"
+      coins: "3.000"
+    - icon: "utensils"
+      title: "Faca + Avental"
+      head: "Kit Profissional"
+      desc: "Faca premium e avental personalizado com logo Swift"
+      coins: "800"
+    - icon: "sparkles"
+      title: "Concierge Swift"
+      head: "Experiência VIP"
+      desc: "Atendimento personalizado, presente surpresa e aventura premium"
+      coins: "5.000"
+
+# Transactions Section
+transactions:
+  title: "Transações Recentes"
+  th:
+    id: "ID"
+    date: "Data"
+    time: "Hora"
+    desc: "Descrição"
+    amount: "Valor"
+    type: "Tipo"
+    category: "Categoria"
+  labels:
+    credit: "Crédito"
+    debit: "Débito"
+
+# System messages
+messages:
+  validation:
+    email_required: "Por favor, informe seu email."
+    email_invalid: "Por favor, informe um email válido."
+    store_required: "Por favor, selecione sua loja."
+  
+  success:
+    login_success: "Login realizado com sucesso! Redirecionando para o dashboard..."
+    already_logged: "Você já está logado! Redirecionando..."
+  
+  error:
+    login_failed: "Erro ao realizar login. Tente novamente."
+    network_error: "Erro de conexão. Verifique sua internet."
+  
+  development:
+    statement: "Funcionalidade de extrato em desenvolvimento"
+    redeem: "Funcionalidade de resgate em desenvolvimento"
+    ranking: "Funcionalidade de ranking em desenvolvimento"
+    dashboard_error: "Erro ao carregar dashboard. Verifique o console."
+  
+  nps:
+    delta_prefix: "em relação à meta"
+    last_update: "Última atualização:"
+
+# Mock data for testing
+mock_data:
+  users:
+    admin:
+      id: 1
+      nome: "Administrador Swift"
+      email: "admin@swift.com.br"
+      loja: "loja-001"
+      cargo: "Gerente Regional"
+      nivel: "Gold"
+      creditos: 2500
+    
+    colaborador:
+      id: 2
+      nome: "João Silva"
+      email: "colaborador@swift.com.br"
+      loja: "loja-002"
+      cargo: "Vendedor"
+      nivel: "Silver"
+      creditos: 1200
+
+# Dashboard mock data
+dashboard_mock_data:
+  transactions:
+    - id: 1
+      date: "2025-01-05"
+      time: "09:10"
+      description: "🎁 Benefício fixo mensal (jan/2025)"
+      amount: 300
+      type: "credit"
+      category: "benefit"
+
+    - id: 2
+      date: "2025-01-05"
+      time: "12:45"
+      description: "🎟️ Campanha de voucher "Verão Swift" — BOOST de tempo limitado (Happy Hour) + multiplicador de equipe aplicado.⚡"
+      amount: 120
+      type: "credit"
+      category: "voucher"
+
+    - id: 3
+      date: "2025-01-04"
+      time: "16:20"
+      description: "🏆 Missão da loja concluída: cross-sell ≥ 35%"
+      amount: 150
+      type: "credit"
+      category: "mission"
+
+    - id: 4
+      date: "2025-01-04"
+      time: "18:55"
+      description: "🛒 Resgate de produto: Hambúrguer Gourmet Swift"
+      amount: -60
+      type: "debit"
+      category: "reward"
+
+    - id: 5
+      date: "2025-01-03"
+      time: "11:30"
+      description: "🌟 NPS Top 3 (NPS 92) — Troféu sazonal "Gold Tier" desbloqueado! Seu atendimento está no pódio do mês. 🥇📈"
+      amount: 180
+      type: "credit"
+      category: "nps"
+  
+  user_stats:
+    total_credits: 1250
+    current_level: "Silver"
+    achievements_count: 8
+    missions_completed: 12
+    rank_position: 15
+    total_users: 150
+    nps: 92
+    top_percent: 3
+    nps_delta: 8
+    nps_updated_at: "hoje às 14:30"
+  
+  polling:
+    interval: 30000
+    enabled: true
+    max_attempts: 10
+    retry_delay: 5000
+
+# Home page content
+home:
+  title: "Swift Elite Rewards - Início"
+  description: "Transforme suas conquistas em recompensas incríveis"
+  
+  hero:
+    welcome: "Bem-vindo de volta, João! 👋"
+    subtitle: "Sua última atividade foi há 2 horas • Continue sua jornada de conquistas"
+    shortcuts:
+      dashboard: "Painel"
+      rewards: "Recompensas"
+      ranking: "Ranking"
+    
+    # Carrossel de prêmios e campanhas
+    carousel:
+      title: "Destaques Swift Elite"
+      controls:
+        previous: "Anterior"
+        next: "Próximo"
+        slide_label_prefix: "Slide"
+      items:
+        - id: 1
+          title: "🎁 Novo Prêmio: Swift Weekend"
+          subtitle: "2 Noites Resort 5★"
+          description: "Resort 5 estrelas + Jantar completo com os melhores cortes Swift"
+          price: "2.500 créditos"
+          badge: "Novo"
+          badge_color: "success"
+          image: "images/hamburguer-happy-hour.png"
+          cta: "Ver Detalhes"
+          
+        - id: 2
+          title: "⚡ Campanha Verão Swift - 2025"
+          subtitle: "Multiplicador 2x Ativo"
+          description: "Ganhe o dobro de créditos na venda de combos selecionados até 31/03!"
+          price: "Tempo Limitado"
+          badge: "Ativa"
+          badge_color: "warning"
+          image: "images/Orange Modern Happy Hour Facebook Post.png"
+          cta: "Participar"
+          
+        - id: 3
+          title: "🏆 Dia do CEO - Experiência Executiva"
+          subtitle: "Passe um dia como CEO da Swift"
+          description: "Conheça os bastidores da empresa e viva uma experiência única"
+          price: "3.000 créditos"
+          badge: "Exclusivo"
+          badge_color: "primary"
+          image: "images/hamburguer-happy-hour.png"
+          cta: "Saiba Mais"
+  
+  summary:
+    title: "Resumo da minha loja - último mês"
+    subtitle: "Métricas Principais"
+    nps:
+      label: "NPS"
+      value: "92"
+      top_percent: "Top 3%"
+      delta: "+8% em relação à meta"
+    metrics:
+      label: "Vendas"
+      ticket:
+        label: "Ticket médio"
+        value: "148,90"
+      cross_sell:
+        label: "Cross-Sell"
+        value: "42%"
+    ranking:
+      label: "Ranking"
+      rank_hint: "2º lugar na região"
+    team:
+      label: "Equipe"
+      status: "Nível Elite"
+  
+  suggestions:
+    title: "Sugestões para Você"
+    redeem_now:
+      title: "Você pode resgatar hoje"
+      item1:
+        title: "Hambúrguer Gourmet Swift"
+        price: "60 créditos"
+        cta: "Resgatar"
+      item2:
+        title: "Café Premium"
+        price: "25 créditos"
+        cta: "Resgatar"
+    near_completion:
+      title: "Quase concluídas"
+      item1:
+        title: "Meta de Vendas Q1"
+        progress: "85% concluído"
+      item2:
+        title: "Treinamento de Equipe"
+        progress: "70% concluído"
+  
+  news:
+    title: "Novidades"
+    campaigns:
+      title: "Campanhas Ativas"
+      description: "Verão Swift 2025 • Multiplicador 2x ativo"
+      status: "Ativa"
+    catalog:
+      title: "Catálogo Atualizado"
+      description: "+15 novos produtos disponíveis"
+      status: "Novo"
+    announcements:
+      title: "Avisos"
+      description: "Manutenção programada: 15/01"
+      status: "Info"
+  
+  scoring:
+    title: "Como você pontua?"
+    subtitle: "Conquiste créditos ao completar atividades e trocar por prêmios"
+    
+    rules:
+      monthly_credit:
+        title: "Crédito mensal Swift"
+        value: "+300 créditos"
+        description: "benefício fixo mensal"
+        icon: "gift"
+      store_mission:
+        title: "Missão da loja concluída"
+        value: "+150 créditos"
+        description: "objetivo coletivo da loja"
+        icon: "check-circle"
+      nps_excellent:
+        title: "NPS 9–10 no atendimento"
+        value: "+30 créditos por avaliação"
+        description: "qualidade excepcional de atendimento"
+        icon: "star"
+      top_nps_month:
+        title: "Top NPS do mês (loja)"
+        value: "+200 créditos"
+        description: "loja com melhor NPS do mês"
+        icon: "trophy"
+      cross_sell:
+        title: "Cross-sell > 35% (loja)"
+        value: "+150 créditos"
+        description: "venda adicional acima da meta"
+        icon: "graph-up"
+      avg_ticket:
+        title: "Ticket médio ≥ 130 (loja)"
+        value: "+100 créditos"
+        description: "valor médio por venda acima da meta"
+        icon: "cash-coin"
+      seasonal_campaign:
+        title: "Campanha sazonal Swift"
+        value: "+120 créditos"
+        description: "campanhas temáticas especiais"
+        icon: "calendar-event"
+      focus_product:
+        title: "Produto foco vendido"
+        value: "+50 créditos por unidade"
+        description: "produto em destaque do período"
+        icon: "bag"
+    
+    example:
+      title: "Exemplo prático"
+      description: "Hoje você poderia ganhar créditos com: Crédito mensal Swift (+300), Missão da loja concluída (+150), NPS 9–10 no atendimento (+30), Cross-sell > 35% (+150) e Produto foco vendido (+50 por unidade)."
+      calculation: "Crédito mensal (+300) + Missão da loja (+150) + NPS excelente (+30) + Cross-sell (+150) + Produto foco (2 un.) (+100) = +730 créditos"
+    
+    progress:
+      title: "Seu progresso"
+      next_reward: "Próximo prêmio"
+      remaining: "Faltam 320 créditos para Resort 5★"
+      percentage: "68%"
+    
+    notes:
+      title: "Observações importantes"
+      items:
+        - "Créditos não são dinheiro, valem apenas no programa"
+        - "Expiram após 12 meses sem uso"
+        - "Irregularidades zeram a pontuação do período"
+    
+    faq:
+      title: "Perguntas frequentes"
+      questions:
+        - question: "Os créditos expiram?"
+          answer: "Sim — créditos expiram 12 meses após a última movimentação"
+        - question: "Há limites de resgate?"
+          answer: "Sim — alguns prêmios têm limites de resgate por período; ver catálogo"
+        - question: "Como é auditado?"
+          answer: "Todas as transações são registradas em T_SE_TRANSACAO e sujeitas a auditoria interna"
+
+# User data
+user:
+  name: "João Silva"
+  level: "Silver"
+  credits: 1250
+
+# Application configuration
+config:
+  validation:
+    email_regex: "^.+@.+\\..+$"
+  
+  timing:
+    loading_delay: 1500
+    redirect_delay: 2000
+    success_delay: 1000
+    polling_interval: 30000
+    notification_duration: 3000

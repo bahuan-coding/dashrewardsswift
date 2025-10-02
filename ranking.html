@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ranking NPS - Swift Elite Rewards</title>
+  <meta name="description" content="Ranking mensal de NPS das lojas Swift Elite">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Estilos do projeto -->
+  <link rel="stylesheet" href="./css/styles.css" />
+
+  <!-- Ícones Lucide -->
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+  <div class="d-flex min-vh-100">
+    <!-- Sidebar Desktop -->
+    <nav class="sidebar d-none d-lg-block bg-white border-end shadow-sm">
+      <div class="d-flex flex-column h-100 p-4 pe-3">
+        <div class="d-flex align-items-center mb-4">
+          <div class="icon-circle-small me-3">
+            <i data-lucide="zap" class="text-brand"></i>
+          </div>
+          <h6 class="mb-0 fw-bold text-brand">Swift Elite</h6>
+        </div>
+        
+        <!-- Bloco de Perfil Minimalista -->
+        <div class="profile-minimal mb-4 text-center">
+          <div class="mb-2">
+            <img src="images/colaborador.png" alt="Foto do colaborador João Silva" class="rounded-circle" style="width: 70px; height: 70px; object-fit: cover; border: 2px solid var(--brand-color);">
+          </div>
+          <h6 class="mb-0 fw-bold text-brand">João Silva</h6>
+        </div>
+        
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="inicio.html">
+              <i data-lucide="home" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Início</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="dashboard.html">
+              <i data-lucide="user" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Colaborador</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="carteira.html">
+              <i data-lucide="wallet" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Carteira</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#rewards">
+              <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Recompensas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="ranking.html">
+              <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Ranking</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Bottom Navigation -->
+        <div class="mt-auto border-top pt-3">
+          <ul class="nav flex-column gap-1">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#settings">
+                <i data-lucide="settings" class="me-3" style="width: 20px; height: 20px;"></i>
+                <span>Configurações</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2 text-danger" href="index.html">
+                <i data-lucide="log-out" class="me-3" style="width: 20px; height: 20px;"></i>
+                <span>Sair</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow-1">
+      <!-- Header Sticky -->
+      <header class="sticky-top bg-white border-bottom shadow-sm">
+        <div class="container-fluid py-3 px-4">
+          <div class="row align-items-center">
+            <div class="col-auto d-lg-none">
+              <!-- Botão Mobile Menu -->
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+              </button>
+            </div>
+            
+            <div class="col">
+              <h1 class="h4 mb-0 fw-bold text-dark">Ranking NPS</h1>
+            </div>
+            
+            <div class="col-auto">
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-secondary btn-sm" id="btnRefresh">
+                  <i data-lucide="refresh-cw" class="me-1" style="width: 16px; height: 16px;"></i>
+                  <span>Atualizar</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Container Principal -->
+      <div class="container-fluid px-4 py-4">
+        
+        <!-- Filtros e Controles -->
+        <section class="mb-4">
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-4">
+              <div class="row g-3 align-items-center">
+                <!-- Chips de Período -->
+                <div class="col-12 col-md-auto">
+                  <label class="form-label fw-semibold mb-2">Período:</label>
+                  <div class="btn-group" role="group" aria-label="Seleção de período">
+                    <input type="radio" class="btn-check" name="period" id="period-current" autocomplete="off" checked>
+                    <label class="btn btn-outline-brand btn-sm" for="period-current">Mês Atual</label>
+                    
+                    <input type="radio" class="btn-check" name="period" id="period-previous" autocomplete="off">
+                    <label class="btn btn-outline-brand btn-sm" for="period-previous">Último Mês</label>
+                  </div>
+                </div>
+
+                <!-- Filtro por Região -->
+                <div class="col-12 col-md-auto">
+                  <label for="regionFilter" class="form-label fw-semibold mb-2">Região:</label>
+                  <select class="form-select form-select-sm" id="regionFilter" style="min-width: 160px;">
+                    <option value="all">Todas as Regiões</option>
+                    <!-- Opções preenchidas dinamicamente -->
+                  </select>
+                </div>
+
+                <!-- Busca por Loja -->
+                <div class="col-12 col-md">
+                  <label for="searchInput" class="form-label fw-semibold mb-2">Buscar Loja:</label>
+                  <div class="input-group input-group-sm">
+                    <span class="input-group-text">
+                      <i data-lucide="search" style="width: 16px; height: 16px;"></i>
+                    </span>
+                    <input type="text" class="form-control" id="searchInput" placeholder="Digite o nome da loja...">
+                    <button class="btn btn-outline-secondary" type="button" id="clearSearch">
+                      <i data-lucide="x" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center py-5">
+          <div class="loading-spinner mx-auto mb-3"></div>
+          <p class="text-muted">Carregando dados do ranking...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="d-none">
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-4 text-center">
+              <div class="icon-pill-brand mx-auto mb-3">
+                <i data-lucide="alert-circle" style="width: 24px; height: 24px;"></i>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">Erro ao Carregar Dados</h5>
+              <p class="text-muted mb-3">Não foi possível carregar o ranking. Verifique sua conexão e tente novamente.</p>
+              <button class="btn btn-brand" id="btnRetry">
+                <i data-lucide="refresh-cw" class="me-2" style="width: 16px; height: 16px;"></i>
+                Tentar Novamente
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="d-none">
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-4 text-center">
+              <div class="icon-pill-brand mx-auto mb-3">
+                <i data-lucide="search" style="width: 24px; height: 24px;"></i>
+              </div>
+              <h5 class="fw-bold text-dark mb-2">Nenhum Resultado Encontrado</h5>
+              <p class="text-muted mb-3">Não encontramos lojas que correspondam aos filtros aplicados.</p>
+              <button class="btn btn-outline-brand" id="btnClearFilters">
+                <i data-lucide="filter-x" class="me-2" style="width: 16px; height: 16px;"></i>
+                Limpar Filtros
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <div id="rankingContent" class="d-none">
+          
+          <!-- Podium Top 3 -->
+          <section class="mb-5" id="podiumSection">
+            <h2 class="h5 fw-bold mb-4">🏆 Top 3 do Mês</h2>
+            <div class="row g-4 justify-content-center">
+              <!-- 2º Lugar -->
+              <div class="col-12 col-md-4 order-2 order-md-1">
+                <div class="podium-card podium-second" id="podium-2">
+                  <div class="podium-position">2º</div>
+                  <div class="podium-medal podium-medal-silver">
+                    <i data-lucide="award" style="width: 24px; height: 24px;"></i>
+                  </div>
+                  <div class="podium-content">
+                    <h6 class="podium-store-name">-</h6>
+                    <p class="podium-location">-</p>
+                    <div class="podium-nps">
+                      <span class="podium-nps-value">--</span>
+                      <span class="podium-nps-delta">--</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 1º Lugar -->
+              <div class="col-12 col-md-4 order-1 order-md-2">
+                <div class="podium-card podium-first" id="podium-1">
+                  <div class="podium-position">1º</div>
+                  <div class="podium-medal podium-medal-gold">
+                    <i data-lucide="crown" style="width: 28px; height: 28px;"></i>
+                  </div>
+                  <div class="podium-content">
+                    <h6 class="podium-store-name">-</h6>
+                    <p class="podium-location">-</p>
+                    <div class="podium-nps">
+                      <span class="podium-nps-value">--</span>
+                      <span class="podium-nps-delta">--</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 3º Lugar -->
+              <div class="col-12 col-md-4 order-3">
+                <div class="podium-card podium-third" id="podium-3">
+                  <div class="podium-position">3º</div>
+                  <div class="podium-medal podium-medal-bronze">
+                    <i data-lucide="award" style="width: 20px; height: 20px;"></i>
+                  </div>
+                  <div class="podium-content">
+                    <h6 class="podium-store-name">-</h6>
+                    <p class="podium-location">-</p>
+                    <div class="podium-nps">
+                      <span class="podium-nps-value">--</span>
+                      <span class="podium-nps-delta">--</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Card "Minha Loja" -->
+          <section class="mb-4" id="minhaLojaSection">
+            <div class="card border-0 rounded-3 shadow-sm my-store-card">
+              <div class="card-body p-4">
+                <div class="row align-items-center">
+                  <div class="col-12 col-md-8">
+                    <div class="d-flex align-items-center mb-2">
+                      <div class="my-store-position me-3">
+                        <span id="myStorePosition">--</span>
+                      </div>
+                      <div>
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                          <h5 class="fw-bold mb-0" id="myStoreName">Minha Loja</h5>
+                          <span class="badge my-store-badge">Minha Loja</span>
+                        </div>
+                        <p class="text-muted mb-0" id="myStoreLocation">-</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-4 text-md-end">
+                    <div class="my-store-nps">
+                      <div class="my-store-nps-value" id="myStoreNps">--</div>
+                      <div class="my-store-nps-delta" id="myStoreNpsDelta">--</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Lista de Ranking -->
+          <section class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h2 class="h5 fw-bold mb-0">Ranking Completo</h2>
+              <span class="text-muted" id="rankingCount">Mostrando 0 de 0 lojas</span>
+            </div>
+            
+            <div class="card border-0 rounded-3 shadow-sm">
+              <div class="card-body p-0">
+                <div class="table-responsive">
+                  <table class="table table-hover mb-0" id="rankingTable">
+                    <thead class="table-light">
+                      <tr>
+                        <th class="px-4 py-3" style="width: 80px;">Posição</th>
+                        <th class="px-4 py-3">Loja</th>
+                        <th class="px-4 py-3">Região</th>
+                        <th class="px-4 py-3" style="width: 120px;">NPS</th>
+                        <th class="px-4 py-3" style="width: 100px;">Variação</th>
+                      </tr>
+                    </thead>
+                    <tbody id="rankingTableBody">
+                      <!-- Preenchido dinamicamente -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Offcanvas Mobile -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+    <div class="offcanvas-header border-bottom">
+      <div class="d-flex align-items-center">
+        <div class="icon-circle-small me-3">
+          <i data-lucide="zap" class="text-brand"></i>
+        </div>
+        <h5 class="offcanvas-title fw-bold text-brand" id="offcanvasSidebarLabel">Swift Elite</h5>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Bloco de Perfil Mobile -->
+      <div class="profile-minimal mb-4 text-center">
+        <div class="mb-2">
+          <img src="images/colaborador.png" alt="Foto do colaborador João Silva" class="rounded-circle" style="width: 56px; height: 56px; object-fit: cover; border: 2px solid var(--brand-color);">
+        </div>
+        <h6 class="mb-0 fw-bold text-brand">João Silva</h6>
+      </div>
+      <ul class="nav flex-column gap-1">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="inicio.html">
+            <i data-lucide="home" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Início</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="dashboard.html">
+            <i data-lucide="user" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Colaborador</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="carteira.html">
+            <i data-lucide="wallet" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Carteira</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#rewards">
+            <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Recompensas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="ranking.html">
+            <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span>Ranking</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Bottom Navigation -->
+      <div class="mt-auto border-top pt-3">
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#settings">
+              <i data-lucide="settings" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Configurações</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2 text-danger" href="index.html">
+              <i data-lucide="log-out" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span>Sair</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Container -->
+  <div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="./data/ranking.js"></script>
+  <script src="./js/content-loader.js"></script>
+  <script src="./js/app.js"></script>
+  
+  <!-- Ranking Page Script -->
+  <script>
+    // Global ranking instance
+    let rankingData = null;
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        console.log('🏆 Iniciando Ranking Swift Elite...');
+
+        // Initialize Lucide icons
+        if (window.lucide) {
+          window.lucide.createIcons();
+          console.log('✅ Ícones Lucide inicializados');
+        }
+
+        // Initialize ranking data
+        rankingData = new RankingData();
+        await loadRankingData();
+
+        // Setup event listeners
+        setupEventListeners();
+
+        console.log('🎉 Ranking carregado com sucesso!');
+
+      } catch (error) {
+        console.error('❌ Erro ao inicializar ranking:', error);
+        showErrorState();
+      }
+    });
+
+    async function loadRankingData() {
+      try {
+        showLoadingState();
+        
+        await rankingData.loadData();
+        
+        // Populate region filter
+        populateRegionFilter();
+        
+        // Render initial data
+        renderRanking();
+        
+        showContentState();
+        
+      } catch (error) {
+        console.error('Erro ao carregar dados:', error);
+        showErrorState();
+        throw error;
+      }
+    }
+
+    function populateRegionFilter() {
+      const regionFilter = document.getElementById('regionFilter');
+      const regions = rankingData.getRegions();
+      
+      // Clear existing options (except "Todas as Regiões")
+      regionFilter.innerHTML = '<option value="all">Todas as Regiões</option>';
+      
+      // Add region options
+      regions.forEach(region => {
+        const option = document.createElement('option');
+        option.value = region;
+        option.textContent = region;
+        regionFilter.appendChild(option);
+      });
+    }
+
+    function renderRanking() {
+      renderPodium();
+      renderMinhaLoja();
+      renderRankingList();
+      updateRankingCount();
+    }
+
+    function renderPodium() {
+      const top3 = rankingData.getTop3();
+      
+      // Render each podium position
+      [1, 2, 3].forEach(position => {
+        const store = top3[position - 1];
+        const podiumElement = document.getElementById(`podium-${position}`);
+        
+        if (store) {
+          const nameElement = podiumElement.querySelector('.podium-store-name');
+          const locationElement = podiumElement.querySelector('.podium-location');
+          const npsValueElement = podiumElement.querySelector('.podium-nps-value');
+          const npsDeltaElement = podiumElement.querySelector('.podium-nps-delta');
+          
+          nameElement.textContent = store.lojaNome;
+          locationElement.textContent = store.cidadeUF;
+          npsValueElement.textContent = store.nps.toFixed(1);
+          
+          const delta = rankingData.calculateDelta(store.nps, store.npsAnterior);
+          if (delta !== null) {
+            npsDeltaElement.textContent = `${delta > 0 ? '+' : ''}${delta}`;
+            npsDeltaElement.className = `podium-nps-delta ${delta > 0 ? 'positive' : delta < 0 ? 'negative' : 'neutral'}`;
+          } else {
+            npsDeltaElement.textContent = 'Nova';
+            npsDeltaElement.className = 'podium-nps-delta neutral';
+          }
+          
+          podiumElement.style.display = 'block';
+        } else {
+          podiumElement.style.display = 'none';
+        }
+      });
+    }
+
+    function renderMinhaLoja() {
+      const minhaLoja = rankingData.getMinhaLoja();
+      
+      if (minhaLoja) {
+        document.getElementById('myStorePosition').textContent = `${minhaLoja.posicao}º`;
+        document.getElementById('myStoreName').textContent = minhaLoja.lojaNome;
+        document.getElementById('myStoreLocation').textContent = minhaLoja.cidadeUF;
+        document.getElementById('myStoreNps').textContent = minhaLoja.nps.toFixed(1);
+        
+        const delta = rankingData.calculateDelta(minhaLoja.nps, minhaLoja.npsAnterior);
+        const deltaElement = document.getElementById('myStoreNpsDelta');
+        
+        if (delta !== null) {
+          deltaElement.textContent = `${delta > 0 ? '+' : ''}${delta} vs mês anterior`;
+          deltaElement.className = `my-store-nps-delta ${delta > 0 ? 'positive' : delta < 0 ? 'negative' : 'neutral'}`;
+        } else {
+          deltaElement.textContent = 'Nova loja';
+          deltaElement.className = 'my-store-nps-delta neutral';
+        }
+        
+        document.getElementById('minhaLojaSection').style.display = 'block';
+      } else {
+        document.getElementById('minhaLojaSection').style.display = 'none';
+      }
+    }
+
+    function renderRankingList() {
+      const remainingStores = rankingData.getRemainingStores();
+      const tbody = document.getElementById('rankingTableBody');
+      
+      tbody.innerHTML = remainingStores.map(store => {
+        const delta = rankingData.calculateDelta(store.nps, store.npsAnterior);
+        let deltaText = '--';
+        let deltaClass = 'neutral';
+        
+        if (delta !== null) {
+          deltaText = `${delta > 0 ? '+' : ''}${delta}`;
+          deltaClass = delta > 0 ? 'positive' : delta < 0 ? 'negative' : 'neutral';
+        } else {
+          deltaText = 'Nova';
+        }
+        
+        return `
+          <tr>
+            <td class="px-4 py-3">
+              <div class="ranking-position">${store.posicao}º</div>
+            </td>
+            <td class="px-4 py-3">
+              <div class="fw-semibold">${store.lojaNome}</div>
+              <div class="small text-muted">${store.cidadeUF}</div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="badge bg-secondary-subtle text-secondary">${store.regiao}</span>
+            </td>
+            <td class="px-4 py-3">
+              <div class="fw-bold text-brand">${store.nps.toFixed(1)}</div>
+            </td>
+            <td class="px-4 py-3">
+              <span class="ranking-delta ${deltaClass}">${deltaText}</span>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function updateRankingCount() {
+      const filteredCount = rankingData.getFilteredStoresCount();
+      const totalCount = rankingData.getTotalStores();
+      const countElement = document.getElementById('rankingCount');
+      
+      countElement.textContent = `Mostrando ${filteredCount} de ${totalCount} lojas`;
+    }
+
+    function setupEventListeners() {
+      // Region filter
+      document.getElementById('regionFilter').addEventListener('change', (e) => {
+        rankingData.filterByRegion(e.target.value);
+        renderRanking();
+        
+        if (rankingData.getFilteredStoresCount() === 0) {
+          showEmptyState();
+        } else {
+          showContentState();
+        }
+      });
+
+      // Search input
+      const searchInput = document.getElementById('searchInput');
+      let searchTimeout;
+      
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          rankingData.filterBySearch(e.target.value);
+          renderRanking();
+          
+          if (rankingData.getFilteredStoresCount() === 0 && e.target.value.trim()) {
+            showEmptyState();
+          } else {
+            showContentState();
+          }
+        }, 300);
+      });
+
+      // Clear search
+      document.getElementById('clearSearch').addEventListener('click', () => {
+        searchInput.value = '';
+        rankingData.filterBySearch('');
+        renderRanking();
+        showContentState();
+      });
+
+      // Clear filters
+      document.getElementById('btnClearFilters').addEventListener('click', () => {
+        document.getElementById('regionFilter').value = 'all';
+        searchInput.value = '';
+        rankingData.resetFilters();
+        renderRanking();
+        showContentState();
+      });
+
+      // Refresh button
+      document.getElementById('btnRefresh').addEventListener('click', async () => {
+        await loadRankingData();
+      });
+
+      // Retry button
+      document.getElementById('btnRetry').addEventListener('click', async () => {
+        await loadRankingData();
+      });
+
+      // Period chips (placeholder for future functionality)
+      document.querySelectorAll('input[name="period"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          console.log('Período selecionado:', e.target.id);
+          // Future: implement period switching
+        });
+      });
+    }
+
+    function showLoadingState() {
+      document.getElementById('loadingState').style.display = 'block';
+      document.getElementById('errorState').classList.add('d-none');
+      document.getElementById('emptyState').classList.add('d-none');
+      document.getElementById('rankingContent').classList.add('d-none');
+    }
+
+    function showErrorState() {
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('errorState').classList.remove('d-none');
+      document.getElementById('emptyState').classList.add('d-none');
+      document.getElementById('rankingContent').classList.add('d-none');
+    }
+
+    function showEmptyState() {
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('errorState').classList.add('d-none');
+      document.getElementById('emptyState').classList.remove('d-none');
+      document.getElementById('rankingContent').classList.add('d-none');
+    }
+
+    function showContentState() {
+      document.getElementById('loadingState').style.display = 'none';
+      document.getElementById('errorState').classList.add('d-none');
+      document.getElementById('emptyState').classList.add('d-none');
+      document.getElementById('rankingContent').classList.remove('d-none');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1970 @@
+:root {
+    /* Paleta de cores - Terracota/Laranja Queimado */
+    --brand-color: hsl(18, 48%, 55%);
+    --brand-hover: hsl(18, 48%, 48%);
+    --brand-foreground: hsl(0, 0%, 100%);
+    --background-light: hsl(30, 25%, 96%);
+    --card-bg: hsl(0, 0%, 100%);
+    --text-dark: hsl(25, 30%, 20%);
+    --text-muted: hsl(25, 15%, 50%);
+    --border-color: hsl(30, 20%, 88%);
+    --success-color: hsl(142, 76%, 36%);
+    --error-color: hsl(0, 84%, 60%);
+    --warning-color: hsl(45, 93%, 47%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* Container principal */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Card principal centralizado */
+.login-card {
+    border: none;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+}
+
+
+/* Painel Branded (Esquerdo) */
+.branded-panel {
+    background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+    color: var(--brand-foreground);
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.branded-panel::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.branded-content {
+    text-align: center;
+    max-width: 400px;
+    position: relative;
+    z-index: 2;
+}
+
+.icon-circle {
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.icon-circle:hover {
+    transform: scale(1.05);
+}
+
+.icon-circle i {
+    font-size: 4rem;
+    color: var(--brand-color);
+}
+
+.branded-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+.branded-text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+/* Painel Form (Direito) */
+.form-panel {
+    background-color: var(--card-bg);
+    padding: 3rem;
+    position: relative;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+/* Form Controls */
+.form-label {
+    font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    font-size: 0.95rem;
+}
+
+.form-control,
+.form-select {
+    height: 3rem;
+    border: 2px solid var(--border-color);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--brand-color);
+    box-shadow: 0 0 0 0.25rem rgba(202, 121, 87, 0.25);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* Validação */
+.was-validated .form-control:invalid,
+.was-validated .form-select:invalid {
+    border-color: var(--error-color);
+}
+
+.was-validated .form-control:valid,
+.was-validated .form-select:valid {
+    border-color: var(--success-color);
+}
+
+.invalid-feedback {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+/* Botão de Login */
+.btn-login {
+    height: 3rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-login:hover {
+    background-color: var(--brand-hover);
+    border-color: var(--brand-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(202, 121, 87, 0.3);
+}
+
+.btn-login:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(202, 121, 87, 0.3);
+}
+
+.btn-login:focus {
+    box-shadow: 0 0 0 0.25rem rgba(202, 121, 87, 0.25);
+}
+
+.btn-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Alertas */
+.alert {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.alert-success {
+    background-color: #d1edff;
+    color: #0c5460;
+    border-left: 4px solid var(--success-color);
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 4px solid var(--error-color);
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border-left: 4px solid var(--warning-color);
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Responsividade */
+@media (max-width: 991.98px) {
+    .login-card {
+        max-width: 100%;
+        margin: 0.5rem;
+    }
+    
+    .branded-panel,
+    .form-panel {
+        padding: 2rem;
+    }
+    
+    .branded-title {
+        font-size: 1.75rem;
+    }
+    
+    .form-title {
+        font-size: 1.75rem;
+    }
+    
+    .icon-circle {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .icon-circle i {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .login-container {
+        padding: 0.5rem;
+    }
+    
+    .login-card {
+        margin: 0.25rem;
+        max-width: calc(100% - 0.5rem);
+    }
+    
+    .branded-panel,
+    .form-panel {
+        padding: 1.5rem;
+    }
+    
+    .branded-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-title {
+        font-size: 1.5rem;
+    }
+    
+    .form-content {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .login-card {
+        margin: 0.125rem;
+        max-width: calc(100% - 0.25rem);
+    }
+    
+    .branded-panel,
+    .form-panel {
+        padding: 1rem;
+    }
+    
+    .branded-title {
+        font-size: 1.25rem;
+    }
+    
+    .form-title {
+        font-size: 1.25rem;
+    }
+    
+    .icon-circle {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .icon-circle i {
+        font-size: 2.5rem;
+    }
+}
+
+/* Animações de entrada */
+.branded-panel,
+.form-panel {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estados de foco melhorados */
+.form-control:focus,
+.form-select:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(202, 121, 87, 0.15);
+}
+
+/* Transições suaves para todos os elementos interativos */
+.form-control,
+.form-select,
+.btn-login {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =============================================================================
+   DASHBOARD STYLES - Swift Elite Rewards
+   ============================================================================= */
+
+/* Cores e utilitários para o dashboard */
+.text-brand {
+    color: var(--brand-color) !important;
+}
+
+.bg-brand {
+    background-color: var(--brand-color) !important;
+}
+
+.btn-brand {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    color: var(--brand-foreground);
+}
+
+.btn-brand:hover {
+    background-color: var(--brand-hover);
+    border-color: var(--brand-hover);
+    color: var(--brand-foreground);
+}
+
+.btn-outline-brand {
+    border-color: var(--brand-color);
+    color: var(--brand-color);
+}
+
+.btn-outline-brand:hover {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    color: var(--brand-foreground);
+}
+
+/* Gradientes */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+}
+
+.bg-gradient-secondary {
+    background: linear-gradient(135deg, var(--background-light) 0%, #ffffff 100%);
+}
+
+/* Ícones */
+.icon-circle-small {
+    width: 40px;
+    height: 40px;
+    background-color: var(--background-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon-pill {
+    width: 48px;
+    height: 48px;
+    background-color: var(--background-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.icon-pill-brand {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(202, 121, 87, 0.15);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--brand-color);
+    border: 1px solid rgba(202, 121, 87, 0.25);
+    box-shadow: 0 2px 8px rgba(202, 121, 87, 0.1);
+    transition: all 0.3s ease;
+}
+
+.icon-pill-brand:hover {
+    background-color: rgba(202, 121, 87, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(202, 121, 87, 0.15);
+}
+
+.icon-pill-white {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: white;
+}
+
+/* Badges */
+.badge-gold {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #8b5a00;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+/* Cards */
+.hover-card {
+    transition: all 0.3s ease;
+}
+
+.hover-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Sidebar */
+.sidebar .nav-link {
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(202, 121, 87, 0.1);
+    color: var(--brand-color);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--brand-color);
+    color: white;
+}
+
+/* Responsividade do dashboard */
+@media (max-width: 991.98px) {
+    .sidebar {
+        display: none !important;
+    }
+}
+
+/* Melhorias de acessibilidade */
+.btn:focus,
+.nav-link:focus {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+}
+
+/* Animações suaves */
+.card,
+.btn,
+.nav-link {
+    transition: all 0.3s ease;
+}
+
+/* Utilitários de texto */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Sombras personalizadas */
+.shadow-sm {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Estados hover para cards */
+.card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-2px);
+}
+
+/* Cards de recompensas mais visíveis */
+#rewardsGrid .card {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border: 2px solid rgba(202, 121, 87, 0.4) !important;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(202, 121, 87, 0.15) !important;
+}
+
+#rewardsGrid .card:hover {
+    background: linear-gradient(145deg, #ffffff, #fff5f0);
+    border-color: rgba(202, 121, 87, 0.6) !important;
+    box-shadow: 0 12px 30px rgba(202, 121, 87, 0.25) !important;
+    transform: translateY(-4px) scale(1.02);
+}
+
+/* Botões dentro dos cards de recompensas */
+#rewardsGrid .btn-outline-brand {
+    border: 2px solid var(--brand-color) !important;
+    color: var(--brand-color);
+    background-color: transparent;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+#rewardsGrid .btn-outline-brand:hover {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(202, 121, 87, 0.3);
+}
+
+/* Estilo para tabelas */
+.table-hover tbody tr:hover {
+    background-color: rgba(202, 121, 87, 0.1);
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Add badges for transaction types */
+.table .badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Progress bar for transaction completion */
+.transaction-progress {
+    height: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 0.375rem;
+    overflow: hidden;
+}
+
+.transaction-progress-bar {
+    background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+    border-radius: 0.375rem;
+    width: 0;
+    transition: width 0.4s ease;
+}
+
+/* Melhorias para badges em tabelas */
+.badge {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
+}
+
+/* Responsividade para botões pequenos */
+@media (max-width: 575.98px) {
+    .btn-sm {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .btn-sm i {
+        width: 14px !important;
+        height: 14px !important;
+    }
+}
+
+/* =============================================================================
+   CLASSES ADICIONAIS PARA COLABORADOR.HTML
+   ============================================================================= */
+
+/* Classes de background */
+.bg-card {
+    background-color: var(--card-bg) !important;
+}
+
+.bg-gradient-card {
+    background: linear-gradient(135deg, var(--card-bg) 0%, var(--background-light) 100%);
+}
+
+/* Classes de texto */
+.text-muted-foreground {
+    color: var(--text-muted) !important;
+}
+
+/* Hover effects */
+.hover-elevate {
+    transition: all 0.3s ease;
+}
+
+.hover-elevate:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Badges personalizados */
+.badge-gold {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #8b5a00;
+    font-weight: 600;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+}
+
+.badge-warning-subtle {
+    background-color: rgba(255, 193, 7, 0.1);
+    color: #856404;
+    border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.badge-success-subtle {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: #0f5132;
+    border: 1px solid rgba(25, 135, 84, 0.2);
+}
+
+.badge-danger-subtle {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #842029;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+}
+
+.badge-secondary-subtle {
+    background-color: rgba(108, 117, 125, 0.1);
+    color: #495057;
+    border: 1px solid rgba(108, 117, 125, 0.2);
+}
+
+/* Progress bars personalizados */
+.progress {
+    height: 0.5rem;
+    border-radius: 0.375rem;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+    border-radius: 0.375rem;
+}
+
+/* Cards com bordas arredondadas */
+.rounded-3 {
+    border-radius: 0.75rem !important;
+}
+
+/* Sidebar específica */
+.sidebar {
+    background-color: var(--card-bg);
+    border-right: 1px solid var(--border-color);
+    min-height: 100vh;
+    flex-shrink: 0;
+    width: 280px !important;
+}
+
+/* Navegação ativa */
+.nav-link.active {
+    background-color: var(--brand-color) !important;
+    color: white !important;
+}
+
+.nav-link:hover:not(.active) {
+    background-color: rgba(202, 121, 87, 0.1);
+    color: var(--brand-color);
+}
+
+/* Tabelas responsivas */
+.table-responsive {
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: var(--background-light);
+    border-bottom: 2px solid var(--border-color);
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.table td {
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+/* Filtros de botões */
+.btn-group .btn.active {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    color: white;
+}
+
+/* Cards de missão */
+.mission-card {
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.mission-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--brand-color);
+}
+
+/* Cards de recomendação */
+.recommendation-card {
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.recommendation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: var(--brand-color);
+}
+
+/* Badge "resgatável agora" */
+.badge-redeemable {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+/* Ícones com tamanho consistente */
+.lucide-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.lucide-icon-sm {
+    width: 16px;
+    height: 16px;
+}
+
+.lucide-icon-lg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Estados de loading */
+.loading-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% {
+        background-position: 200% 0;
+    }
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* Responsividade adicional */
+@media (max-width: 991.98px) {
+    .sidebar {
+        display: none !important;
+    }
+    
+    .main-content {
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .card-body {
+        padding: 1rem !important;
+    }
+    
+    .btn-group-sm .btn {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .container-fluid {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+    
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-sm {
+        padding: 0.25rem 0.375rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* =============================================================================
+   WALLET BALANCE - Swift Elite Rewards
+   ============================================================================= */
+
+/* Balance visibility toggle */
+.balance-blur {
+    filter: blur(6px);
+    transition: filter 0.3s ease;
+    user-select: none; /* Prevent text selection while blurred */
+}
+
+/* XP Progress Bar */
+.xp-track {
+    height: 3px;
+    background: var(--bs-gray-200);
+    border-radius: 999px;
+    overflow: hidden;
+    max-width: 200px; /* Limit width to match text block */
+}
+
+.xp-fill {
+    height: 100%;
+    background: var(--bs-success);
+    border-radius: 999px;
+    width: 0;
+    transition: width 0.4s ease;
+}
+
+/* Eye icon hover/focus effects */
+#btn-toggle-visibility:hover i,
+#btn-toggle-visibility:focus i {
+    opacity: 1 !important;
+}
+
+#btn-toggle-visibility:focus {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Mobile responsiveness for wallet CTAs */
+@media (max-width: 767.98px) {
+    #wallet-cta-container .btn-primary {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    #wallet-cta-container .btn-link {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* Delta float animation */
+.delta-float {
+    position: absolute;
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(0);
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    color: var(--bs-success);
+    font-size: 0.875rem;
+    pointer-events: none;
+    z-index: 10;
+    right: 0;
+    top: -20px;
+}
+
+.delta-float.show {
+    opacity: 1;
+    transform: translateY(-12px);
+}
+
+/* Balance pulse animation */
+@keyframes balance-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.balance-pulse {
+    animation: balance-pulse 0.6s ease-in-out;
+}
+
+/* Level badges */
+.level-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Line height utilities */
+.lh-11 {
+    line-height: 1.1 !important;
+}
+
+.level-bronze { background-color: #cd7f32; color: white; }
+.level-silver { background-color: #c0c0c0; color: #333; }
+.level-gold { background-color: #ffd700; color: #8b5a00; }
+.level-platinum { background-color: #e5e4e2; color: #333; }
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .balance-blur,
+    .xp-fill,
+    .delta-float {
+        transition: none;
+    }
+    
+    .balance-pulse {
+        animation: none;
+    }
+}
+
+/* =============================================================================
+   PROFILE MINIMAL - Swift Elite Rewards
+   ============================================================================= */
+
+/* Bloco de perfil minimalista */
+.profile-minimal {
+  transition: all 0.3s ease;
+}
+
+.profile-minimal img {
+  transition: all 0.3s ease;
+}
+
+.profile-minimal:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(202, 121, 87, 0.3);
+}
+
+.profile-minimal h6 {
+  color: var(--brand-color) !important;
+}
+
+/* Responsividade do bloco minimalista */
+@media (max-width: 991.98px) {
+  .profile-minimal img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+  
+  .profile-minimal h6 {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .profile-minimal img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+  
+  .profile-minimal h6 {
+    font-size: 0.85rem;
+  }
+}
+
+/* =============================================================================
+   LOADING OVERLAY - Swift Elite Rewards
+   ============================================================================= */
+
+/* Loading overlay container */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.loading-overlay.visible {
+    opacity: 1;
+    animation: fadeInOverlay 0.5s ease-out forwards;
+}
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Loading content */
+.loading-content {
+    text-align: center;
+    position: relative;
+    padding: 2rem;
+}
+
+/* Custom loading animation */
+.loading-spinner {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.loading-spinner::before,
+.loading-spinner::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--brand-foreground);
+    opacity: 0.6;
+    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.loading-spinner::after {
+    animation-delay: -2s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.3);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(0.3);
+        opacity: 0.6;
+    }
+}
+
+.loading-text {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--brand-foreground);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.loading-text::after {
+    content: '...';
+    position: absolute;
+    right: -1.5rem;
+    animation: ellipsis 3s ease-in-out infinite;
+}
+
+@keyframes ellipsis {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Decorative background elements */
+.loading-overlay::before,
+.loading-overlay::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: float 12s ease-in-out infinite;
+}
+
+.loading-overlay::before {
+    top: -150px;
+    right: -150px;
+}
+
+.loading-overlay::after {
+    bottom: -150px;
+    left: -150px;
+    animation-delay: -6s;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-15px, 15px) rotate(90deg); }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .loading-overlay,
+    .loading-spinner::before,
+    .loading-spinner::after,
+    .loading-text::after,
+    .loading-overlay::before,
+    .loading-overlay::after {
+        animation: none;
+        transition: none;
+    }
+    
+    .loading-spinner::before {
+        opacity: 0.6;
+    }
+}
+
+/* =============================================================================
+   CARROSSEL HERO - Swift Elite Rewards
+   ============================================================================= */
+
+/* Container do carrossel */
+.carousel-card {
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.carousel-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    border-color: var(--brand-color);
+}
+
+/* Imagem do carrossel */
+.carousel-image-container {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, var(--background-light) 0%, #ffffff 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.carousel-image:hover {
+    transform: scale(1.05);
+}
+
+/* Indicadores do carrossel */
+.carousel-indicators {
+    margin-bottom: 1rem;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--border-color);
+    border: none;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators [data-bs-target].active {
+    background-color: var(--brand-color);
+    transform: scale(1.2);
+}
+
+.carousel-indicators [data-bs-target]:hover {
+    background-color: var(--brand-hover);
+    transform: scale(1.1);
+}
+
+/* Controles de navegação */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-control-prev {
+    left: -25px;
+}
+
+.carousel-control-next {
+    right: -25px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(202, 121, 87, 0.3);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
+    background-color: var(--text-muted);
+    mask-size: 20px 20px;
+    -webkit-mask-size: 20px 20px;
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: white;
+}
+
+/* Badges personalizados para o carrossel */
+.carousel-card .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.carousel-card .badge.bg-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%) !important;
+}
+
+.carousel-card .badge.bg-warning {
+    background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%) !important;
+    color: #000 !important;
+}
+
+.carousel-card .badge.bg-primary {
+    background: linear-gradient(135deg, #007bff 0%, #6610f2 100%) !important;
+}
+
+/* Botões do carrossel */
+.carousel-card .btn-brand {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.875rem;
+}
+
+.carousel-card .btn-brand:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(202, 121, 87, 0.3);
+}
+
+/* Preços destacados */
+.carousel-card .text-brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade do carrossel */
+@media (max-width: 991.98px) {
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none;
+    }
+    
+    .carousel-image-container {
+        height: 150px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .carousel-card .card-body {
+        padding: 1.5rem !important;
+    }
+    
+    .carousel-card .btn-brand {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .carousel-card .text-brand {
+        font-size: 1.1rem;
+    }
+    
+    .carousel-image-container {
+        height: 120px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .carousel-card .row {
+        flex-direction: column;
+    }
+    
+    .carousel-image-container {
+        height: 100px;
+        border-radius: 0.5rem 0.5rem 0 0;
+    }
+    
+    .carousel-card .card-body {
+        padding: 1rem !important;
+    }
+    
+    .carousel-card .d-flex.justify-content-between {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .carousel-card .btn-brand {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Animações do carrossel */
+.carousel-item {
+    transition: transform 0.6s ease-in-out;
+}
+
+/* Efeito de hover para cards do carrossel */
+.carousel-card:hover .carousel-image {
+    transform: scale(1.05);
+}
+
+.carousel-card:hover .badge {
+    transform: scale(1.05);
+}
+
+/* Melhorias de acessibilidade */
+.carousel-control-prev:focus,
+.carousel-control-next:focus {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+}
+
+.carousel-indicators [data-bs-target]:focus {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+}
+
+/* Estados de loading para o carrossel */
+.carousel-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* =============================================================================
+   RANKING PAGE STYLES - Swift Elite Rewards
+   ============================================================================= */
+
+/* Podium Cards */
+.podium-card {
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border: 2px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    position: relative;
+    transition: all 0.3s ease;
+    height: 100%;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.podium-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Podium Positions */
+.podium-first {
+    border-color: #ffd700;
+    background: linear-gradient(145deg, #fffdf0, #fff9e6);
+    min-height: 320px;
+    transform: scale(1.05);
+}
+
+.podium-first:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+}
+
+.podium-second {
+    border-color: #c0c0c0;
+    background: linear-gradient(145deg, #fafafa, #f0f0f0);
+}
+
+.podium-second:hover {
+    box-shadow: 0 12px 30px rgba(192, 192, 192, 0.3);
+}
+
+.podium-third {
+    border-color: #cd7f32;
+    background: linear-gradient(145deg, #faf7f2, #f5ede0);
+}
+
+.podium-third:hover {
+    box-shadow: 0 12px 30px rgba(205, 127, 50, 0.3);
+}
+
+/* Podium Position Numbers */
+.podium-position {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand-color);
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 12px rgba(202, 121, 87, 0.3);
+}
+
+.podium-first .podium-position {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #8b5a00;
+    width: 36px;
+    height: 36px;
+}
+
+.podium-second .podium-position {
+    background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+    color: #333;
+}
+
+.podium-third .podium-position {
+    background: linear-gradient(135deg, #cd7f32 0%, #e6a85c 100%);
+    color: white;
+}
+
+/* Podium Medals */
+.podium-medal {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+    transition: transform 0.3s ease;
+}
+
+.podium-medal-gold {
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #8b5a00;
+    width: 70px;
+    height: 70px;
+}
+
+.podium-medal-silver {
+    background: linear-gradient(135deg, #c0c0c0 0%, #e8e8e8 100%);
+    color: #333;
+}
+
+.podium-medal-bronze {
+    background: linear-gradient(135deg, #cd7f32 0%, #e6a85c 100%);
+    color: white;
+}
+
+.podium-card:hover .podium-medal {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Podium Content */
+.podium-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.podium-store-name {
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.podium-location {
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.podium-nps {
+    margin-top: auto;
+}
+
+.podium-nps-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--brand-color);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.podium-nps-delta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.podium-nps-delta.positive {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: var(--success-color);
+}
+
+.podium-nps-delta.negative {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--error-color);
+}
+
+.podium-nps-delta.neutral {
+    background-color: rgba(108, 117, 125, 0.1);
+    color: var(--text-muted);
+}
+
+/* Minha Loja Card */
+.my-store-card {
+    border: 3px solid var(--brand-color) !important;
+    background: linear-gradient(145deg, #fff5f0, #ffffff);
+    position: relative;
+    overflow: hidden;
+}
+
+.my-store-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+}
+
+.my-store-position {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(202, 121, 87, 0.3);
+}
+
+.my-store-badge {
+    background: linear-gradient(135deg, var(--brand-color) 0%, var(--brand-hover) 100%);
+    color: white;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.my-store-nps-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--brand-color);
+    line-height: 1;
+}
+
+.my-store-nps-delta {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.my-store-nps-delta.positive {
+    color: var(--success-color);
+}
+
+.my-store-nps-delta.negative {
+    color: var(--error-color);
+}
+
+.my-store-nps-delta.neutral {
+    color: var(--text-muted);
+}
+
+/* Ranking Table */
+.ranking-position {
+    width: 40px;
+    height: 40px;
+    background: var(--background-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--brand-color);
+    font-size: 0.875rem;
+}
+
+.ranking-delta {
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+}
+
+.ranking-delta.positive {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: var(--success-color);
+}
+
+.ranking-delta.positive::before {
+    content: '+';
+}
+
+.ranking-delta.negative {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--error-color);
+}
+
+.ranking-delta.neutral {
+    background-color: rgba(108, 117, 125, 0.1);
+    color: var(--text-muted);
+}
+
+/* Filter Controls */
+.btn-check:checked + .btn-outline-brand {
+    background-color: var(--brand-color);
+    border-color: var(--brand-color);
+    color: white;
+}
+
+/* Loading States for Ranking */
+.ranking-skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite;
+    border-radius: 0.5rem;
+}
+
+.podium-skeleton {
+    height: 280px;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading-shimmer 1.5s infinite;
+    border-radius: 1rem;
+}
+
+/* Responsividade do Ranking */
+@media (max-width: 991.98px) {
+    .podium-card {
+        min-height: 240px;
+        padding: 1.5rem 1rem;
+    }
+    
+    .podium-first {
+        min-height: 260px;
+        transform: none;
+    }
+    
+    .podium-first:hover {
+        transform: translateY(-4px);
+    }
+    
+    .podium-medal {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .podium-medal-gold {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .podium-nps-value {
+        font-size: 1.75rem;
+    }
+    
+    .my-store-position {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+    
+    .my-store-nps-value {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .podium-card {
+        min-height: 200px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .podium-first {
+        min-height: 220px;
+        order: 1 !important;
+    }
+    
+    .podium-second {
+        order: 2 !important;
+    }
+    
+    .podium-third {
+        order: 3 !important;
+    }
+    
+    .podium-medal {
+        width: 40px;
+        height: 40px;
+        margin: 0.75rem auto;
+    }
+    
+    .podium-medal-gold {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .podium-nps-value {
+        font-size: 1.5rem;
+    }
+    
+    .podium-store-name {
+        font-size: 1rem;
+    }
+    
+    .my-store-card .row {
+        text-align: center;
+    }
+    
+    .my-store-card .col-md-4 {
+        margin-top: 1rem;
+    }
+    
+    .ranking-position {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .container-fluid {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    .podium-card {
+        min-height: 180px;
+        padding: 0.75rem;
+    }
+    
+    .podium-first {
+        min-height: 200px;
+    }
+    
+    .podium-position {
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
+    }
+    
+    .podium-first .podium-position {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .podium-medal {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .podium-medal-gold {
+        width: 45px;
+        height: 45px;
+    }
+    
+    .podium-nps-value {
+        font-size: 1.25rem;
+    }
+    
+    .my-store-nps-value {
+        font-size: 1.75rem;
+    }
+    
+    .my-store-position {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+    
+    .ranking-position {
+        width: 30px;
+        height: 30px;
+        font-size: 0.75rem;
+    }
+}
+
+/* Accessibility improvements */
+.podium-card:focus-within {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+}
+
+.ranking-position:focus {
+    outline: 2px solid var(--brand-color);
+    outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .podium-card,
+    .podium-medal,
+    .my-store-position {
+        transition: none;
+        animation: none;
+    }
+    
+    .podium-card:hover {
+        transform: none;
+    }
+    
+    .podium-first {
+        transform: none;
+    }
+    
+    .podium-first:hover {
+        transform: none;
+    }
+    
+    .podium-card:hover .podium-medal {
+        transform: none;
+    }
+    
+    .ranking-skeleton,
+    .podium-skeleton {
+        animation: none;
+        background: #f0f0f0;
+    }
+}

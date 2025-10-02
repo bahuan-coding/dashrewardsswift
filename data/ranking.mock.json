@@ -1,0 +1,152 @@
+[
+  {
+    "id": "loja_001",
+    "lojaNome": "Loja Centro SP",
+    "regiao": "São Paulo",
+    "cidadeUF": "São Paulo, SP",
+    "nps": 94.3,
+    "npsAnterior": 91.2,
+    "posicao": 1,
+    "destaque": false
+  },
+  {
+    "id": "loja_015",
+    "lojaNome": "Minha Loja",
+    "regiao": "São Paulo",
+    "cidadeUF": "Guarulhos, SP",
+    "nps": 92.8,
+    "npsAnterior": 89.5,
+    "posicao": 2,
+    "destaque": true
+  },
+  {
+    "id": "loja_032",
+    "lojaNome": "Loja Vila Madalena",
+    "regiao": "São Paulo",
+    "cidadeUF": "São Paulo, SP",
+    "nps": 91.7,
+    "npsAnterior": 88.9,
+    "posicao": 3,
+    "destaque": false
+  },
+  {
+    "id": "loja_045",
+    "lojaNome": "Loja Alphaville",
+    "regiao": "São Paulo",
+    "cidadeUF": "Barueri, SP",
+    "nps": 90.2,
+    "npsAnterior": 92.1,
+    "posicao": 4,
+    "destaque": false
+  },
+  {
+    "id": "loja_067",
+    "lojaNome": "Loja Barra da Tijuca",
+    "regiao": "Rio de Janeiro",
+    "cidadeUF": "Rio de Janeiro, RJ",
+    "nps": 89.8,
+    "npsAnterior": 87.3,
+    "posicao": 5,
+    "destaque": false
+  },
+  {
+    "id": "loja_089",
+    "lojaNome": "Loja Ipanema",
+    "regiao": "Rio de Janeiro",
+    "cidadeUF": "Rio de Janeiro, RJ",
+    "nps": 89.1,
+    "npsAnterior": 91.0,
+    "posicao": 6,
+    "destaque": false
+  },
+  {
+    "id": "loja_012",
+    "lojaNome": "Loja Savassi",
+    "regiao": "Minas Gerais",
+    "cidadeUF": "Belo Horizonte, MG",
+    "nps": 88.6,
+    "npsAnterior": 85.4,
+    "posicao": 7,
+    "destaque": false
+  },
+  {
+    "id": "loja_098",
+    "lojaNome": "Loja Boa Viagem",
+    "regiao": "Pernambuco",
+    "cidadeUF": "Recife, PE",
+    "nps": 88.2,
+    "npsAnterior": 86.7,
+    "posicao": 8,
+    "destaque": false
+  },
+  {
+    "id": "loja_076",
+    "lojaNome": "Loja Setor Marista",
+    "regiao": "Goiás",
+    "cidadeUF": "Goiânia, GO",
+    "nps": 87.9,
+    "npsAnterior": null,
+    "posicao": 9,
+    "destaque": false
+  },
+  {
+    "id": "loja_054",
+    "lojaNome": "Loja Moinhos de Vento",
+    "regiao": "Rio Grande do Sul",
+    "cidadeUF": "Porto Alegre, RS",
+    "nps": 87.5,
+    "npsAnterior": 89.2,
+    "posicao": 10,
+    "destaque": false
+  },
+  {
+    "id": "loja_123",
+    "lojaNome": "Loja Aldeota",
+    "regiao": "Ceará",
+    "cidadeUF": "Fortaleza, CE",
+    "nps": 87.1,
+    "npsAnterior": 84.8,
+    "posicao": 11,
+    "destaque": false
+  },
+  {
+    "id": "loja_145",
+    "lojaNome": "Loja Campo Grande",
+    "regiao": "Mato Grosso do Sul",
+    "cidadeUF": "Campo Grande, MS",
+    "nps": 86.7,
+    "npsAnterior": 85.9,
+    "posicao": 12,
+    "destaque": false
+  },
+  {
+    "id": "loja_167",
+    "lojaNome": "Loja Pituba",
+    "regiao": "Bahia",
+    "cidadeUF": "Salvador, BA",
+    "nps": 86.3,
+    "npsAnterior": 83.1,
+    "posicao": 13,
+    "destaque": false
+  },
+  {
+    "id": "loja_189",
+    "lojaNome": "Loja Meireles",
+    "regiao": "Ceará",
+    "cidadeUF": "Fortaleza, CE",
+    "nps": 85.9,
+    "npsAnterior": 87.6,
+    "posicao": 14,
+    "destaque": false
+  },
+  {
+    "id": "loja_201",
+    "lojaNome": "Loja Asa Norte",
+    "regiao": "Distrito Federal",
+    "cidadeUF": "Brasília, DF",
+    "nps": 85.4,
+    "npsAnterior": 82.7,
+    "posicao": 15,
+    "destaque": false
+  }
+]

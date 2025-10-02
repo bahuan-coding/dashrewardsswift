@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-content="dashboard.title">Painel do Colaborador - Swift Elite Rewards</title>
+  <meta name="description" data-content="dashboard.description" content="Painel de controle do colaborador Swift Elite Rewards">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Estilos do projeto -->
+  <link rel="stylesheet" href="./css/styles.css" />
+
+  <!-- Ícones Lucide -->
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+  <div class="d-flex min-vh-100">
+    <!-- Sidebar Desktop -->
+    <nav class="sidebar d-none d-lg-block bg-white border-end shadow-sm">
+      <div class="d-flex flex-column h-100 p-4 pe-3">
+        <div class="d-flex align-items-center mb-4">
+          <div class="icon-circle-small me-3">
+            <i data-lucide="zap" class="text-brand"></i>
+          </div>
+          <h6 class="mb-0 fw-bold text-brand" data-content="app.brand">Swift Elite</h6>
+        </div>
+        
+        <!-- Bloco de Perfil Minimalista -->
+        <div class="profile-minimal mb-4 text-center">
+          <div class="mb-2">
+            <img src="images/colaborador.png" alt="Foto do colaborador João Silva" class="rounded-circle" style="width: 70px; height: 70px; object-fit: cover; border: 2px solid var(--brand-color);">
+          </div>
+          <h6 class="mb-0 fw-bold text-brand" data-content="user.name">João Silva</h6>
+        </div>
+        
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="inicio.html">
+              <i data-lucide="home" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span data-content="nav.home">Início</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="dashboard.html">
+              <i data-lucide="user" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span data-content="nav.collaborator">Colaborador</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="carteira.html">
+              <i data-lucide="wallet" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span data-content="nav.wallet">Carteira</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#rewards">
+              <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span data-content="nav.rewards">Recompensas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#ranking">
+              <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span data-content="nav.ranking">Ranking</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Bottom Navigation -->
+        <div class="mt-auto border-top pt-3">
+          <ul class="nav flex-column gap-1">
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#settings">
+                <i data-lucide="settings" class="me-3" style="width: 20px; height: 20px;"></i>
+                <span data-content="nav.settings">Configurações</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2 text-danger" href="index.html">
+                <i data-lucide="log-out" class="me-3" style="width: 20px; height: 20px;"></i>
+                <span data-content="nav.logout">Sair</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Conteúdo Principal -->
+    <main class="flex-grow-1">
+      <!-- Header Sticky -->
+      <header class="sticky-top bg-white border-bottom shadow-sm">
+        <div class="container-fluid py-3 px-4">
+          <div class="row align-items-center">
+            <div class="col-auto d-lg-none">
+              <!-- Botão Mobile Menu -->
+              <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                <i data-lucide="menu" style="width: 20px; height: 20px;"></i>
+              </button>
+            </div>
+            
+            <div class="col">
+              <h1 class="h4 mb-0 fw-bold text-dark" data-content="dashboard.heading">Painel do Colaborador</h1>
+            </div>
+            
+            <div class="col-auto">
+              <div class="d-flex gap-2">
+                <button class="btn btn-outline-secondary btn-sm" id="btnExtrato">
+                  <i data-lucide="history" class="me-1" style="width: 16px; height: 16px;"></i>
+                  <span data-content="actions.statement">Extrato</span>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" id="btnResgatar">
+                  <i data-lucide="gift" class="me-1" style="width: 16px; height: 16px;"></i>
+                  <span data-content="actions.redeem">Resgatar</span>
+                </button>
+                <button class="btn btn-outline-secondary btn-sm" id="btnRanking">
+                  <i data-lucide="trophy" class="me-1" style="width: 16px; height: 16px;"></i>
+                  <span data-content="actions.ranking">Ranking</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Container Principal -->
+      <div class="container-fluid px-4 py-4">
+        <!-- Banner NPS -->
+        <section class="mb-4">
+          <div class="card border-0 rounded-3 bg-gradient-primary text-white overflow-hidden position-relative">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="icon-pill-white me-3">
+                      <i data-lucide="trending-up" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <div>
+                      <div class="small opacity-90" data-content="nps.label">Seu NPS</div>
+                      <div class="h2 fw-bold mb-0" id="npsScore">--</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                  <span class="badge badge-gold fs-6 mb-2" id="npsTopBadge">Top --%</span>
+                  <div class="small opacity-90" id="npsExtraText" data-content="nps.extra">Sua equipe está no TOP 10%!</div>
+                </div>
+              </div>
+            </div>
+            <!-- Decoração -->
+            <div class="position-absolute top-0 end-0 opacity-10">
+              <i data-lucide="award" style="width: 120px; height: 120px; transform: translate(30px, -30px);"></i>
+            </div>
+          </div>
+        </section>
+
+        <!-- Status do NPS -->
+        <section class="mb-4">
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <div class="d-flex align-items-center mb-2">
+                    <i data-lucide="award" class="text-brand me-2" style="width: 24px; height: 24px;"></i>
+                    <h3 class="h6 fw-bold mb-0" data-content="nps.status">Status do NPS</h3>
+                    <button class="btn btn-sm btn-outline-secondary ms-2" 
+                            data-bs-toggle="tooltip" 
+                            data-bs-placement="top"
+                            data-bs-html="true"
+                            data-bs-title="<strong>Sistema de Pontuação:</strong><br>• NPS 9-10: +50 pts<br>• NPS 7-8: +20 pts<br>• NPS ≤6: 0 pts<br>• R$10 em vendas: 1 pt<br>• Cross-sell: +5 pts<br>• Cliente fiel retorno: +20 pts<br>• Cliente fiel indicação: +50 pts">
+                      <i data-lucide="help-circle" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </div>
+                  <div class="display-6 text-brand fw-bold mb-2">
+                    NPS: <span id="npsValue">--</span>
+                  </div>
+                  <div class="small text-muted" id="npsUpdatedAt">—</div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                  <span class="badge badge-gold fs-6 mb-2" id="npsTopBadge2">Top --%</span>
+                  <div class="small text-muted" id="npsDelta">—</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Benefícios -->
+        <section class="mb-4">
+          <h2 class="h5 fw-bold mb-3" data-content="benefits.title">Benefícios</h2>
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-4">
+              <div class="row align-items-center">
+                <div class="col-md-8">
+                  <div class="d-flex align-items-center">
+                    <div class="icon-pill-brand me-3">
+                      <i data-lucide="gift" style="width: 24px; height: 24px;"></i>
+                    </div>
+                    <div>
+                      <div class="fw-semibold h6 mb-1" data-content="benefits.kitTitle">Kit Premium Swift</div>
+                      <div class="small text-muted" data-content="benefits.kitSubtitle">Foca + Avental</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 text-md-end">
+                  <div class="d-flex align-items-center justify-content-md-end gap-3">
+                    <div class="text-brand fw-bold">
+                      <span class="h5 mb-0" id="benefitCost">1.200</span>
+                      <small class="text-muted"> coins</small>
+                    </div>
+                    <button class="btn btn-brand" id="btnRedeemPrimary" data-content="benefits.redeem">
+                      Resgatar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- O que você ainda pode ganhar -->
+        <section class="mb-4">
+          <h2 class="h5 fw-bold mb-3" data-content="rewards.moreTitle">O que você ainda pode ganhar?</h2>
+          <div class="row g-3" id="rewardsGrid">
+            <!-- Cards gerados dinamicamente -->
+          </div>
+        </section>
+
+        <!-- Transações Recentes -->
+        <section class="mb-4">
+          <h2 class="h5 fw-bold mb-3" data-content="transactions.title">Transações Recentes</h2>
+          <div class="card border-0 rounded-3 shadow-sm">
+            <div class="card-body p-0">
+              <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                  <thead class="table-light">
+                    <tr>
+                      <th class="px-4 py-3" data-content="transactions.th.id">ID</th>
+                      <th class="px-4 py-3" data-content="transactions.th.date">Data</th>
+                      <th class="px-4 py-3" data-content="transactions.th.time">Hora</th>
+                      <th class="px-4 py-3" data-content="transactions.th.desc">Descrição</th>
+                      <th class="px-4 py-3" data-content="transactions.th.amount">Valor</th>
+                      <th class="px-4 py-3" data-content="transactions.th.type">Tipo</th>
+                      <th class="px-4 py-3" data-content="transactions.th.category">Categoria</th>
+                    </tr>
+                  </thead>
+                  <tbody id="txTableBody">
+                    <!-- Preenchido via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Offcanvas Mobile -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+    <div class="offcanvas-header border-bottom">
+      <div class="d-flex align-items-center">
+        <div class="icon-circle-small me-3">
+          <i data-lucide="zap" class="text-brand"></i>
+        </div>
+        <h5 class="offcanvas-title fw-bold text-brand" id="offcanvasSidebarLabel" data-content="app.brand">Swift Elite</h5>
+      </div>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-aria-label="nav.close" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <!-- Bloco de Perfil Mobile Minimalista -->
+      <div class="profile-minimal mb-4 text-center">
+        <div class="mb-2">
+          <img src="images/colaborador.png" alt="Foto do colaborador João Silva" class="rounded-circle" style="width: 56px; height: 56px; object-fit: cover; border: 2px solid var(--brand-color);">
+        </div>
+        <h6 class="mb-0 fw-bold text-brand" data-content="user.name">João Silva</h6>
+      </div>
+      <ul class="nav flex-column gap-1">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="inicio.html">
+            <i data-lucide="home" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span data-content="nav.home">Início</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active d-flex align-items-center px-3 py-2 rounded-2 bg-brand text-white" href="dashboard.html">
+            <i data-lucide="user" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span data-content="nav.collaborator">Colaborador</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="carteira.html">
+            <i data-lucide="wallet" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span data-content="nav.wallet">Carteira</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#rewards">
+            <i data-lucide="gift" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span data-content="nav.rewards">Recompensas</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#ranking">
+            <i data-lucide="trophy" class="me-3" style="width: 20px; height: 20px;"></i>
+            <span data-content="nav.ranking">Ranking</span>
+        </a>
+        </li>
+        <li class="nav-item">
+        </li>
+      </ul>
+
+      <!-- Bottom Navigation -->
+      <div class="mt-auto border-top pt-3">
+        <ul class="nav flex-column gap-1">
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2" href="#settings">
+              <i data-lucide="settings" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span data-content="nav.settings">Configurações</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link d-flex align-items-center px-3 py-2 rounded-2 text-danger" href="index.html">
+              <i data-lucide="log-out" class="me-3" style="width: 20px; height: 20px;"></i>
+              <span data-content="nav.logout">Sair</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Container -->
+  <div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 1050;"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="./js/content-loader.js"></script>
+  <script src="./js/app.js"></script>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        console.log('🚀 Iniciando Dashboard Swift Elite...');
+
+        // 1) Verificação de autenticação
+        if (!window.SwiftEliteRewards || !window.SwiftEliteRewards.checkIfLoggedIn()) {
+          console.log('❌ Usuário não logado, redirecionando...');
+          window.location.href = 'index.html';
+          return;
+        }
+
+        console.log('✅ Usuário autenticado');
+
+        // 2) Carregar e aplicar conteúdo YAML
+        if (window.contentLoader) {
+          await window.contentLoader.loadContent();
+          await window.contentLoader.applyContent();
+          console.log('✅ Conteúdo YAML aplicado');
+        }
+
+        // 3) Inicializar ícones Lucide
+        if (window.lucide) {
+          window.lucide.createIcons();
+          console.log('✅ Ícones Lucide inicializados');
+        }
+
+        // 4) Inicializar tooltips Bootstrap
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        console.log('✅ Tooltips inicializados');
+
+        // 5) Popular dados do usuário
+        if (window.SwiftEliteRewards && window.SwiftEliteRewards.getUserStats) {
+          const stats = window.SwiftEliteRewards.getUserStats();
+          console.log('📊 Estatísticas do usuário:', stats);
+
+          if (stats) {
+            // NPS
+            const npsScore = stats.nps || 92;
+            const topPercent = stats.top_percent || 3;
+            
+            document.getElementById('npsScore').textContent = npsScore;
+            document.getElementById('npsValue').textContent = npsScore;
+            document.getElementById('npsTopBadge').textContent = `Top ${topPercent}%`;
+            document.getElementById('npsTopBadge2').textContent = `Top ${topPercent}%`;
+            
+            // Delta NPS
+            const npsDelta = stats.nps_delta || 8;
+            const deltaPrefix = window.contentLoader?.getMessage?.('messages.nps.delta_prefix') || 'em relação à meta';
+            document.getElementById('npsDelta').textContent = `${npsDelta > 0 ? '+' : ''}${npsDelta} ${deltaPrefix}`;
+            
+            // Última atualização
+            const updatedAt = stats.nps_updated_at || 'hoje às 14:30';
+            const lastUpdateText = window.contentLoader?.getMessage?.('messages.nps.last_update') || 'Última atualização:';
+            document.getElementById('npsUpdatedAt').textContent = `${lastUpdateText} ${updatedAt}`;
+          }
+        }
+
+        // 6) Popular transações
+        if (window.SwiftEliteRewards && window.SwiftEliteRewards.getMockTransactions) {
+          const transactions = window.SwiftEliteRewards.getMockTransactions();
+          console.log('💳 Transações:', transactions);
+
+          const tbody = document.getElementById('txTableBody');
+          if (tbody && transactions && Array.isArray(transactions)) {
+            tbody.innerHTML = transactions.map(tx => `
+              <tr>
+                <td class="px-4 py-3">#${tx.id}</td>
+                <td class="px-4 py-3">${tx.date}</td>
+                <td class="px-4 py-3">${tx.time || '--'}</td>
+                <td class="px-4 py-3">${tx.description}</td>
+                <td class="px-4 py-3">
+                  <span class="fw-semibold ${tx.type === 'credit' ? 'text-success' : 'text-danger'}">
+                    ${tx.type === 'credit' ? '+' : '-'}${Math.abs(tx.amount)}
+                  </span>
+                </td>
+                <td class="px-4 py-3">
+                  <span class="badge ${tx.type === 'credit' ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger'}">
+                    ${tx.type === 'credit' ? (window.contentLoader?.getMessage?.('transactions.labels.credit') || 'Crédito') : (window.contentLoader?.getMessage?.('transactions.labels.debit') || 'Débito')}
+                  </span>
+                </td>
+                <td class="px-4 py-3">
+                  <span class="badge bg-secondary-subtle text-secondary">
+                    ${tx.category}
+                  </span>
+                </td>
+              </tr>
+            `).join('');
+          }
+        }
+
+        // 7) Popular grid de recompensas
+        const rewardsGrid = document.getElementById('rewardsGrid');
+        if (rewardsGrid) {
+          const rewards = window.contentLoader?.getContentByPath?.('rewards.items') || [
+            { icon: 'trophy', title: 'Swift Weekend', head: '2 Noites Resort 5★', desc: 'Resort 5 estrelas + Jantar completo com os melhores cortes Swift', coins: '2.500' },
+            { icon: 'briefcase', title: 'Dia do CEO', head: 'Experiência Executiva', desc: 'Passe um dia como CEO da Swift e conheça os bastidores da empresa', coins: '3.000' },
+            { icon: 'utensils', title: 'Faca + Avental', head: 'Kit Profissional', desc: 'Faca premium e avental personalizado com logo Swift', coins: '800' },
+            { icon: 'sparkles', title: 'Concierge Swift', head: 'Experiência VIP', desc: 'Atendimento personalizado, presente surpresa e aventura premium', coins: '5.000' }
+          ];
+
+          rewardsGrid.innerHTML = rewards.map(reward => `
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="card border-0 rounded-3 shadow-sm h-100 hover-card">
+                <div class="card-body p-4 d-flex flex-column">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="icon-pill-brand me-3">
+                      <i data-lucide="${reward.icon}" style="width: 20px; height: 20px;"></i>
+                    </div>
+                    <div class="fw-semibold small">${reward.title}</div>
+                  </div>
+                  <div class="h6 text-brand fw-bold mb-2">${reward.head}</div>
+                  <div class="small text-muted mb-3 flex-grow-1">${reward.desc}</div>
+                  <div class="mt-auto">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                      <span class="text-brand fw-bold">${reward.coins} coins</span>
+                    </div>
+                    <button class="btn btn-outline-brand btn-sm w-100" data-content="rewards.details">
+                      Ver Detalhes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `).join('');
+
+          // Re-aplicar ícones após adicionar conteúdo
+          if (window.lucide) {
+            window.lucide.createIcons();
+          }
+        }
+
+        // 8) Event listeners para ações
+        document.getElementById('btnOpenReport')?.addEventListener('click', () => {
+          const message = window.contentLoader?.getMessage?.('report.open') || 'Abrir relatório detalhado';
+          if (window.SwiftEliteRewards) {
+            window.SwiftEliteRewards.showAlert(message, 'info');
+          } else {
+            alert(message);
+          }
+        });
+
+        document.getElementById('btnRedeemPrimary')?.addEventListener('click', () => {
+          const message = window.contentLoader?.getMessage?.('benefits.redeemAction') || 'Resgate solicitado com sucesso!';
+          if (window.SwiftEliteRewards) {
+            window.SwiftEliteRewards.showAlert(message, 'success');
+          } else {
+            alert(message);
+          }
+        });
+
+        document.getElementById('btnExtrato')?.addEventListener('click', () => {
+          const message = window.contentLoader?.getMessage?.('messages.development.statement') || 'Funcionalidade de extrato em desenvolvimento';
+          if (window.SwiftEliteRewards) {
+            window.SwiftEliteRewards.showAlert(message, 'info');
+          } else {
+            alert(message);
+          }
+        });
+
+        document.getElementById('btnResgatar')?.addEventListener('click', () => {
+          const message = window.contentLoader?.getMessage?.('messages.development.redeem') || 'Funcionalidade de resgate em desenvolvimento';
+          if (window.SwiftEliteRewards) {
+            window.SwiftEliteRewards.showAlert(message, 'info');
+          } else {
+            alert(message);
+          }
+        });
+
+        document.getElementById('btnRanking')?.addEventListener('click', () => {
+          const message = window.contentLoader?.getMessage?.('messages.development.ranking') || 'Funcionalidade de ranking em desenvolvimento';
+          if (window.SwiftEliteRewards) {
+            window.SwiftEliteRewards.showAlert(message, 'info');
+          } else {
+            alert(message);
+          }
+        });
+
+        console.log('🎉 Dashboard carregado com sucesso!');
+
+      } catch (error) {
+        console.error('❌ Erro ao inicializar dashboard:', error);
+        if (window.SwiftEliteRewards) {
+          const errorMessage = window.contentLoader?.getMessage?.('messages.development.dashboard_error') || 'Erro ao carregar dashboard. Verifique o console.';
+          window.SwiftEliteRewards.showAlert(errorMessage, 'danger');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
